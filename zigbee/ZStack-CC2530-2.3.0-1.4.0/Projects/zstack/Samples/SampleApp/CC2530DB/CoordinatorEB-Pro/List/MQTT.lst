@@ -1,0 +1,315 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         05/May/2023  23:00:54 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\MQTT.c                                        #
+#    Command line       =  -f C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC25 #
+#                          30-2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\C #
+#                          C2530DB\..\..\..\Tools\CC2530DB\f8wCoord.cfg       #
+#                          (-DCPU32MHZ -DROOT=__near_func                     #
+#                          -DMAC_CFG_APP_PENDING_QUEUE=TRUE                   #
+#                          -DZDO_COORDINATOR -DRTR_NWK -DBLINK_LEDS) -f       #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg         #
+#                          (-DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR      #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFF1                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116 "-DCONST=const __code"    #
+#                          -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE     #
+#                          -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100            #
+#                          -DRESPONSE_POLL_RATE=100) -DREJOIN_POLL_RATE=440   #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\MQTT.c -D ZIGBEEPRO -D ZTOOL_P1 -D xMT_TASK   #
+#                          -D xMT_SYS_FUNC -D xMT_ZDO_FUNC -D                 #
+#                          LCD_SUPPORTED=DEBUG -lC C:\Users\86158\Desktop\8.Æ #
+#                          øÌå´«¸ÐÆ÷\ZStack-CC2530-2.3.0-1.4.0\Projects\zstac #
+#                          k\Samples\SampleApp\CC2530DB\CoordinatorEB-Pro\Lis #
+#                          t\ -lA C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack- #
+#                          CC2530-2.3.0-1.4.0\Projects\zstack\Samples\SampleA #
+#                          pp\CC2530DB\CoordinatorEB-Pro\List\                #
+#                          --diag_suppress Pe001,Pa010 -o                     #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\CoordinatorEB-Pro\Obj\ -e --debug             #
+#                          --core=plain --dptr=16,1 --data_model=large        #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data_rom                  #
+#                          --nr_virtual_regs 16 -I C:\Users\86158\Desktop\8.Æ #
+#                          øÌå´«¸ÐÆ÷\ZStack-CC2530-2.3.0-1.4.0\Projects\zstac #
+#                          k\Samples\SampleApp\CC2530DB\ -I                   #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\SOURCE\ -I C:\Users\86158\Desktop\8.ÆøÌå´« #
+#                          ¸ÐÆ÷\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\Sam #
+#                          ples\SampleApp\CC2530DB\..\..\..\ZMAIN\TI2530DB\   #
+#                          -I C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC25 #
+#                          30-2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\C #
+#                          C2530DB\..\..\..\..\..\COMPONENTS\MT\ -I           #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\HAL\INCLUDE\ -I     #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\HAL\TARGET\CC2530EB #
+#                          \ -I C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC #
+#                          2530-2.3.0-1.4.0\Projects\zstack\Samples\SampleApp #
+#                          \CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\MCU\CCSOC #
+#                          \ -I C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC #
+#                          2530-2.3.0-1.4.0\Projects\zstack\Samples\SampleApp #
+#                          \CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\INCLUDE\  #
+#                          -I C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC25 #
+#                          30-2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\C #
+#                          C2530DB\..\..\..\..\..\COMPONENTS\STACK\AF\ -I     #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\STACK\NWK\ -I       #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\STACK\SEC\ -I       #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\STACK\SAPI\ -I      #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\STACK\SYS\ -I       #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\STACK\ZDO\ -I       #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\ZMAC\F8W\ -I        #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\ZMAC\ -I            #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\SERVICES\SADDR\ -I  #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\SERVICES\SDATA\ -I  #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\MAC\INCLUDE\ -I     #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\MAC\HIGH_LEVEL\ -I  #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LEVEL\srf04 #
+#                          \ -I C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC #
+#                          2530-2.3.0-1.4.0\Projects\zstack\Samples\SampleApp #
+#                          \CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LEVEL\ #
+#                          srf04\SINGLE_CHIP\ -Ohz --require_prototypes       #
+#    List file          =  C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\CoordinatorEB-Pro\List\MQTT.lst               #
+#    Object file        =  C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\CoordinatorEB-Pro\Obj\MQTT.r51                #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC2530DB\MQTT.c
+      1          #include "mqtt.h"         //°üº¬ÐèÒªµÄÍ·ÎÄ¼þ
+
+  #ifndef __MQTT_H__
+   ^
+"C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC2530DB\mqtt.h",1  Error[Pe037]: 
+          the #endif for this directive is missing
+      2          #include "string.h"       //°üº¬ÐèÒªµÄÍ·ÎÄ¼þ
+      3          #include "stdio.h"        //°üº¬ÐèÒªµÄÍ·ÎÄ¼þ
+      4          int   Fixed_len;                       			   //¹Ì¶¨±¨Í·³¤¶È
+      5          int   Variable_len;                     		   //¿É±ä±¨Í·³¤¶È
+      6          int   Payload_len;                       		   //ÓÐÐ§¸ººÉ³¤¶È
+      7          
+      8          char ClientID[128];                                //´æ·Å¿Í»§¶ËIDµÄ»º³åÇø
+      9          int  ClientID_len;                                 //´æ·Å¿Í»§¶ËIDµÄ³¤¶È
+     10          
+     11          char Username[128];                                //´æ·ÅÓÃ»§ÃûµÄ»º³åÇø
+     12          int  Username_len;								   //´æ·ÅÓÃ»§ÃûµÄ³¤¶È
+     13          
+     14          char Passward[128];                                //´æ·ÅÃÜÂëµÄ»º³åÇø
+     15          int  Passward_len;								   //´æ·ÅÃÜÂëµÄ³¤¶È
+     16          
+     17          char ServerIP[128];                                //´æ·Å·þÎñÆ÷IP»òÊÇÓòÃû
+     18          int  ServerPort;                                   //´æ·Å·þÎñÆ÷µÄ¶Ë¿ÚºÅ
+     19          
+     20          unsigned char  temp_buff[TBUFF_UNIT];			   //ÁÙÊ±»º³åÇø£¬¹¹½¨±¨ÎÄÓÃ
+                                          ^
+Error[Pe020]: identifier "TBUFF_UNIT" is undefined
+     21          
+     22          
+     23          /*----------------------------------------------------------*/
+     24          /*º¯ÊýÃû£ºÔÆ³õÊ¼»¯²ÎÊý£¬µÃµ½¿Í»§¶ËID£¬ÓÃ»§ÃûºÍÃÜÂë          */
+     25          /*²Î  Êý£ºÎÞ                                                */
+     26          /*·µ»ØÖµ£ºÎÞ                                                */
+     27          /*----------------------------------------------------------*/
+     28          void IoT_Parameter_Init(void)
+                      ^
+Error[Pa045]: function "IoT_Parameter_Init" has no prototype
+     29          {	
+     30          	memset(ClientID,0,128);                              //¿Í»§¶ËIDµÄ»º³åÇøÈ«²¿ÇåÁã
+     31          	sprintf(ClientID,"%s",DEVICEID);                     //¹¹½¨¿Í»§¶ËID£¬²¢´æÈë»º³åÇø
+     32          	ClientID_len = strlen(ClientID);                     //¼ÆËã¿Í»§¶ËIDµÄ³¤¶È
+     33          	
+     34          	memset(Username,0,128);                              //ÓÃ»§ÃûµÄ»º³åÇøÈ«²¿ÇåÁã
+     35          	sprintf(Username,"%s",PRODUCTID);                    //¹¹½¨ÓÃ»§Ãû£¬²¢´æÈë»º³åÇø
+     36          	Username_len = strlen(Username);                     //¼ÆËãÓÃ»§ÃûµÄ³¤¶È
+     37          	
+     38          	memset(Passward,0,128);                              //ÓÃ»§ÃûµÄ»º³åÇøÈ«²¿ÇåÁã
+     39          	sprintf(Passward,"%s",AUTHENTICATION);               //¹¹½¨ÃÜÂë£¬²¢´æÈë»º³åÇø
+     40          	Passward_len = strlen(Passward);                     //¼ÆËãÃÜÂëµÄ³¤¶È
+     41          	
+     42          	memset(ServerIP,0,128);  
+     43          	sprintf(ServerIP,"%s","183.230.40.39");              //¹¹½¨·þÎñÆ÷ÓòÃû
+     44          	ServerPort = 6002;                                   //·þÎñÆ÷¶Ë¿ÚºÅ6002
+     45          	/*
+     46          	u1_printf("·þ Îñ Æ÷£º%s:%d\r\n",ServerIP,ServerPort); //´®¿ÚÊä³öµ÷ÊÔÐÅÏ¢
+     47          	u1_printf("¿Í»§¶ËID£º%s\r\n",ClientID);               //´®¿ÚÊä³öµ÷ÊÔÐÅÏ¢
+     48          	u1_printf("ÓÃ »§ Ãû£º%s\r\n",Username);               //´®¿ÚÊä³öµ÷ÊÔÐÅÏ¢
+     49          	u1_printf("ÃÜ    Âë£º%s\r\n",Passward);               //´®¿ÚÊä³öµ÷ÊÔÐÅÏ¢
+     50                  */
+     51          }
+     52          
+     53          /*----------------------------------------------------------*/
+     54          /*º¯ÊýÃû£ºÁ¬½Ó·þÎñÆ÷±¨ÎÄ                                    */
+     55          /*²Î  Êý£ºÎÞ                                                */
+     56          /*·µ»ØÖµ£ºÎÞ                                                */
+     57          /*----------------------------------------------------------*/
+     58          void MQTT_ConectPack(void)
+                      ^
+Error[Pa045]: function "MQTT_ConectPack" has no prototype
+     59          {	
+     60          	int temp,Remaining_len;
+     61          	
+     62          	Fixed_len = 1;                                                        //Á¬½Ó±¨ÎÄÖÐ£¬¹Ì¶¨±¨Í·³¤¶ÈÔÝÊ±ÏÈ=1
+     63          	Variable_len = 10;                                                    //Á¬½Ó±¨ÎÄÖÐ£¬¿É±ä±¨Í·³¤¶È=10
+     64          	Payload_len = 2 + ClientID_len + 2 + Username_len + 2 + Passward_len; //Á¬½Ó±¨ÎÄÖÐ£¬¸ºÔØ³¤¶È      
+     65          	Remaining_len = Variable_len + Payload_len;                           //Ê£Óà³¤¶È=¿É±ä±¨Í·³¤¶È+¸ºÔØ³¤¶È
+     66          	
+     67          	temp_buff[0]=0x10;                         //¹Ì¶¨±¨Í·µÚ1¸ö×Ö½Ú £º¹Ì¶¨0x01		
+     68          	do{                                        //Ñ­»·´¦Àí¹Ì¶¨±¨Í·ÖÐµÄÊ£Óà³¤¶È×Ö½Ú£¬×Ö½ÚÁ¿¸ù¾ÝÊ£Óà×Ö½ÚµÄÕæÊµ³¤¶È±ä»¯
+     69          		temp = Remaining_len%128;              //Ê£Óà³¤¶ÈÈ¡Óà128
+     70          		Remaining_len = Remaining_len/128;     //Ê£Óà³¤¶ÈÈ¡Õû128
+     71          		if(Remaining_len>0)               	
+     72          			temp |= 0x80;                      //°´Ð­ÒéÒªÇóÎ»7ÖÃÎ»          
+     73          		temp_buff[Fixed_len] = temp;           //Ê£Óà³¤¶È×Ö½Ú¼ÇÂ¼Ò»¸öÊý¾Ý
+     74          		Fixed_len++;	                       //¹Ì¶¨±¨Í·×Ü³¤¶È+1    
+     75          	}while(Remaining_len > 0);                 //Èç¹ûRemaining_len>0µÄ»°£¬ÔÙ´Î½øÈëÑ­»·
+     76          	
+     77          	temp_buff[Fixed_len + 0] = 0x00;     //¿É±ä±¨Í·µÚ1¸ö×Ö½Ú £º¹Ì¶¨0x00	            
+     78          	temp_buff[Fixed_len + 1] = 0x04;     //¿É±ä±¨Í·µÚ2¸ö×Ö½Ú £º¹Ì¶¨0x04
+     79          	temp_buff[Fixed_len + 2] = 0x4D;	 //¿É±ä±¨Í·µÚ3¸ö×Ö½Ú £º¹Ì¶¨0x4D
+     80          	temp_buff[Fixed_len + 3] = 0x51;	 //¿É±ä±¨Í·µÚ4¸ö×Ö½Ú £º¹Ì¶¨0x51
+     81          	temp_buff[Fixed_len + 4] = 0x54;	 //¿É±ä±¨Í·µÚ5¸ö×Ö½Ú £º¹Ì¶¨0x54
+     82          	temp_buff[Fixed_len + 5] = 0x54;     //¿É±ä±¨Í·µÚ6¸ö×Ö½Ú £º¹Ì¶¨0x54
+     83          	temp_buff[Fixed_len + 6] = 0x04;	 //¿É±ä±¨Í·µÚ7¸ö×Ö½Ú £º¹Ì¶¨0x04
+     84          	temp_buff[Fixed_len + 7] = 0xC2;	 //¿É±ä±¨Í·µÚ8¸ö×Ö½Ú £ºÊ¹ÄÜÓÃ»§ÃûºÍÃÜÂëÐ£Ñé£¬²»Ê¹ÓÃÒÅÖö£¬²»±£Áô»á»°
+     85          	temp_buff[Fixed_len + 8] = 0x00; 	 //¿É±ä±¨Í·µÚ9¸ö×Ö½Ú £º±£»îÊ±¼ä¸ß×Ö½Ú 0x00
+     86          	temp_buff[Fixed_len + 9] = 0x64;	 //¿É±ä±¨Í·µÚ10¸ö×Ö½Ú£º±£»îÊ±¼ä¸ß×Ö½Ú 0x64   100s
+     87          	
+     88          	/*     CLIENT_ID      */
+     89          	temp_buff[Fixed_len+10] = ClientID_len/256;                			  	//¿Í»§¶ËID³¤¶È¸ß×Ö½Ú
+     90          	temp_buff[Fixed_len+11] = ClientID_len%256;               			  	//¿Í»§¶ËID³¤¶ÈµÍ×Ö½Ú
+     91          	memcpy(&temp_buff[Fixed_len+12],ClientID,ClientID_len);                 //¸´ÖÆ¹ýÀ´¿Í»§¶ËID×Ö´®	
+     92          	/*     ÓÃ»§Ãû        */
+     93          	temp_buff[Fixed_len+12+ClientID_len] = Username_len/256; 				//ÓÃ»§Ãû³¤¶È¸ß×Ö½Ú
+     94          	temp_buff[Fixed_len+13+ClientID_len] = Username_len%256; 				//ÓÃ»§Ãû³¤¶ÈµÍ×Ö½Ú
+     95          	memcpy(&temp_buff[Fixed_len+14+ClientID_len],Username,Username_len);    //¸´ÖÆ¹ýÀ´ÓÃ»§Ãû×Ö´®	
+     96          	/*      ÃÜÂë        */
+     97          	temp_buff[Fixed_len+14+ClientID_len+Username_len] = Passward_len/256;	//ÃÜÂë³¤¶È¸ß×Ö½Ú
+     98          	temp_buff[Fixed_len+15+ClientID_len+Username_len] = Passward_len%256;	//ÃÜÂë³¤¶ÈµÍ×Ö½Ú
+     99          	memcpy(&temp_buff[Fixed_len+16+ClientID_len+Username_len],Passward,Passward_len); //¸´ÖÆ¹ýÀ´ÃÜÂë×Ö´®
+    100          
+    101          }
+    102          /*----------------------------------------------------------*/
+    103          /*º¯ÊýÃû£ºSUBSCRIBE¶©ÔÄtopic±¨ÎÄ                            */
+    104          /*²Î  Êý£ºQoS£º¶©ÔÄµÈ¼¶                                     */
+    105          /*²Î  Êý£ºtopic_name£º¶©ÔÄtopic±¨ÎÄÃû³Æ                     */
+    106          /*·µ»ØÖµ£ºÎÞ                                                */
+    107          /*----------------------------------------------------------*/
+    108          void MQTT_Subscribe(char *topic_name, int QoS)
+                      ^
+Error[Pa045]: function "MQTT_Subscribe" has no prototype
+    109          {	
+    110          	Fixed_len = 2;                              		   //SUBSCRIBE±¨ÎÄÖÐ£¬¹Ì¶¨±¨Í·³¤¶È=2
+    111          	Variable_len = 2;                          			   //SUBSCRIBE±¨ÎÄÖÐ£¬¿É±ä±¨Í·³¤¶È=2	
+    112          	Payload_len = 2 + strlen(topic_name) + 1;   		   //¼ÆËãÓÐÐ§¸ººÉ³¤¶È = 2×Ö½Ú(topic_name³¤¶È)+ topic_name×Ö·û´®µÄ³¤¶È + 1×Ö½Ú·þÎñµÈ¼¶
+    113          	
+    114          	temp_buff[0] = 0x82;                                   //µÚ1¸ö×Ö½Ú £º¹Ì¶¨0x82                      
+    115          	temp_buff[1] = Variable_len + Payload_len;             //µÚ2¸ö×Ö½Ú £º¿É±ä±¨Í·+ÓÐÐ§¸ººÉµÄ³¤¶È	
+    116          	temp_buff[2] = 0x00;                                   //µÚ3¸ö×Ö½Ú £º±¨ÎÄ±êÊ¶·û¸ß×Ö½Ú£¬¹Ì¶¨Ê¹ÓÃ0x00
+    117          	temp_buff[3] = 0x01;		                           //µÚ4¸ö×Ö½Ú £º±¨ÎÄ±êÊ¶·ûµÍ×Ö½Ú£¬¹Ì¶¨Ê¹ÓÃ0x01
+    118          	temp_buff[4] = strlen(topic_name)/256;                 //µÚ5¸ö×Ö½Ú £ºtopic_name³¤¶È¸ß×Ö½Ú
+    119          	temp_buff[5] = strlen(topic_name)%256;		           //µÚ6¸ö×Ö½Ú £ºtopic_name³¤¶ÈµÍ×Ö½Ú
+    120          	memcpy(&temp_buff[6], topic_name, strlen(topic_name)); //µÚ7¸ö×Ö½Ú¿ªÊ¼ £º¸´ÖÆ¹ýÀ´topic_name×Ö´®		
+    121          	temp_buff[6 + strlen(topic_name)] = QoS;               //×îºó1¸ö×Ö½Ú£º¶©ÔÄµÈ¼¶
+    122          	
+    123          
+    124          }
+    125          
+    126          /*----------------------------------------------------------*/
+    127          /*º¯ÊýÃû£ºµÈ¼¶0 ·¢²¼ÏûÏ¢±¨ÎÄ                                  */
+    128          /*²Î  Êý£ºtopic_name£ºtopicÃû³Æ                              */
+    129          /*²Î  Êý£ºdata£ºÊý¾Ý                                         */ 
+    130          /*²Î  Êý£ºdata_len£ºÊý¾Ý³¤¶È                                 */
+    131          /*·µ»ØÖµ£ºÎÞ                                                 */
+    132          /*----------------------------------------------------------*/
+    133          void MQTT_PublishQs0(char *topic, char *data, int data_len)
+                      ^
+Error[Pa045]: function "MQTT_PublishQs0" has no prototype
+    134          {	
+    135          	int temp,Remaining_len;
+    136          	
+    137          	Fixed_len = 1;                              //¹Ì¶¨±¨Í·³¤¶ÈÔÝÊ±ÏÈµÈÓÚ£º1×Ö½Ú
+    138          	Variable_len = 2 + strlen(topic);           //¿É±ä±¨Í·³¤¶È£º2×Ö½Ú(topic³¤¶È)+ topic×Ö·û´®µÄ³¤¶È
+    139          	Payload_len = data_len;                     //ÓÐÐ§¸ººÉ³¤¶È£º¾ÍÊÇdata_len
+    140          	Remaining_len = Variable_len + Payload_len; //Ê£Óà³¤¶È=¿É±ä±¨Í·³¤¶È+¸ºÔØ³¤¶È
+    141          	
+    142          	temp_buff[0] = 0x30;                      	//¹Ì¶¨±¨Í·µÚ1¸ö×Ö½Ú £º¹Ì¶¨0x30   	
+    143          	do{                                         //Ñ­»·´¦Àí¹Ì¶¨±¨Í·ÖÐµÄÊ£Óà³¤¶È×Ö½Ú£¬×Ö½ÚÁ¿¸ù¾ÝÊ£Óà×Ö½ÚµÄÕæÊµ³¤¶È±ä»¯
+    144          		temp = Remaining_len%128;           	//Ê£Óà³¤¶ÈÈ¡Óà128
+    145          		Remaining_len = Remaining_len/128;      //Ê£Óà³¤¶ÈÈ¡Õû128
+    146          		if(Remaining_len>0)               	
+    147          			temp |= 0x80;                    	//°´Ð­ÒéÒªÇóÎ»7ÖÃÎ»          
+    148          		temp_buff[Fixed_len] = temp;            //Ê£Óà³¤¶È×Ö½Ú¼ÇÂ¼Ò»¸öÊý¾Ý
+    149          		Fixed_len++;	                     	//¹Ì¶¨±¨Í·×Ü³¤¶È+1    
+    150          	}while(Remaining_len>0);                    //Èç¹ûRemaining_len>0µÄ»°£¬ÔÙ´Î½øÈëÑ­»·
+    151          		             
+    152          	temp_buff[Fixed_len+0] = strlen(topic)/256;                       //¿É±ä±¨Í·µÚ1¸ö×Ö½Ú     £ºtopic³¤¶È¸ß×Ö½Ú
+    153          	temp_buff[Fixed_len+1] = strlen(topic)%256;		                  //¿É±ä±¨Í·µÚ2¸ö×Ö½Ú     £ºtopic³¤¶ÈµÍ×Ö½Ú
+    154          	memcpy(&temp_buff[Fixed_len+2], topic,strlen(topic));             //¿É±ä±¨Í·µÚ3¸ö×Ö½Ú¿ªÊ¼ £º¿½±´topic×Ö·û´®	
+    155          	memcpy(&temp_buff[Fixed_len + 2 + strlen(topic)], data, data_len);//ÓÐÐ§¸ººÉ£º¿½±´dataÊý¾Ý
+    156          	
+    157          	TxDataBuf_Deal(temp_buff, Fixed_len + Variable_len + Payload_len);//¼ÓÈë·¢ËÍÊý¾Ý»º³åÇø	
+                 	^
+Error[Pe223]: function "TxDataBuf_Deal" declared implicitly
+    158          }
+
+Errors: 7
+Warnings: none
