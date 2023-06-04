@@ -159,7 +159,7 @@ int main( void )
 
   /* Display the device info on the LCD */
 #ifdef LCD_SUPPORTED
-  zmain_lcd_init();
+  //zmain_lcd_init();
 #endif
 
 #ifdef WDT_IN_PM1
@@ -327,8 +327,8 @@ static void zmain_dev_info(void)
     lcd_buf[i++] = ch + (( ch < 10 ) ? '0' : '7');
   }
   lcd_buf[Z_EXTADDR_LEN*2] = '\0';
-  HalLcdWriteString( "IEEE: ", HAL_LCD_LINE_1 );
-  HalLcdWriteString( (char*)lcd_buf, HAL_LCD_LINE_2 );
+ // HalLcdWriteString( "IEEE: ", HAL_LCD_LINE_1 );
+  //HalLcdWriteString( (char*)lcd_buf, HAL_LCD_LINE_2 );
 #endif
 }
 

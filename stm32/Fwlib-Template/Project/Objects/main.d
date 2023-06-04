@@ -35,3 +35,4 @@
 .\objects\main.o: ..\User\timer\time.h
 .\objects\main.o: D:\keil5\keil5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\main.o: D:\keil5\keil5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\main.o: ..\User\RTC\ds1302.h

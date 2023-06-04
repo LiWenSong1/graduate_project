@@ -61,7 +61,7 @@
 #include "AF.h"
 #include "aps_groups.h"
 #include "ZDApp.h"
-
+#include <ioCC2530.h>
 
 #include "SampleApp.h"
 #include "SampleAppHw.h"
@@ -75,7 +75,7 @@
 #include "MT_UART.h"
 #include "MT_APP.h"
 #include "MT.h"
-
+//#include "DS1302.h"
 #include "DHT11.h"
 #include <stdio.h>
 #include <string.h>
@@ -86,6 +86,15 @@
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof(arr)[0])
 uint8 flat = 1;
 uint8 con_succ=0;
+uint8 food_flag=0;
+//获取食物重量定义的变量
+uint8 getmaopi_flag=0;
+unsigned long HX711_Buffer = 0;
+unsigned long  Weight_Maopi = 0,Weight_Shiwu = 0;
+float Weight = 0;
+uint16 count=0;
+uint8 Sethour,Setmiunte;
+#define GapValue 430
 //需要修改的是下面4行
 #define  devkey   "REWZhCwwBa=6WWaBam6onjn5=HM="   //onenet平台产品apikey
 #define  devid    "1067058780"                      //onenet平台设备id
@@ -98,9 +107,11 @@ uint8 con_succ=0;
 #define CWMODE_C   "AT+CWMODE=3\r\n"  //STA+AP模式
 //#define CIPSTART_C "AT+CIPSTART=\"TCP\",\"192.168.1.3\",8234\r\n" //连接HTTP服务器192.168.1.4,8234  8234是服务器的端口号 ---本地测试
 #define CIPSTART_C "AT+CIPSTART=\"TCP\",\"183.230.40.39\",6002\r\n"   //连接云服务器
+//#define CIPTIME_C "AT+CIPSTART=\"TCP\",\"www.beijing-time.org\",80\r\n"   //连接时间服务器
 #define CIPMODE_C  "AT+CIPMODE=1\r\n"   //透传模式
 #define CIPSEND_C  "AT+CIPSEND\r\n"     //发送数据的指令
 
+//#define HAL_LCD TRUE
 /*********************************************************************
  * CONSTANTS
  */
@@ -162,9 +173,7 @@ afAddrType_t SampleApp_Flash_DstAddr;    //组播
 afAddrType_t SampleApp_P2P_DstAddr;      //点播
 
 aps_Group_t SampleApp_Group;
-                        
-unsigned char concmd[]={0x10,0x21,0x00,0x04,0x4D,0x51,0x54,0x54,0x04,0xC0,0x00,0x78,0x00,0x0A,0x31,0x30,0x37,0x39,0x39,0x36,0x38,0x39,0x34,0x37,0x00,0x06,0x35,0x39,0x30,0x39,0x34,0x35,0x00,0x01,0x32};
-  
+
 uint8 SampleAppPeriodicCounter = 0;
 uint8 SampleAppFlashCounter = 0;
 
@@ -182,6 +191,11 @@ void USART_Receive_messege(mtOSALSerialData_t *MSGpkt);
 void publish_msg(afIncomingMSGPacket_t *pkt);
 void sub_msg(void);
 void send_onenet(afIncomingMSGPacket_t *pkt);
+unsigned int HX711_Read(void);
+int get_data(const char* data_name,char* recv,int recv_len);
+void LCD_CLS(void);
+void Get_Maopi(void);
+long Get_Weight(void);
 /*********************************************************************
  * NETWORK LAYER CALLBACKS
  */
@@ -210,20 +224,37 @@ void SampleApp_Init( uint8 task_id )
   SampleApp_TaskID = task_id;
   SampleApp_NwkState = DEV_INIT;
   SampleApp_TransID = 0;
-  
+   LCD_CLS();
+  LCD_welcome();
   MT_UartInit();                  //串口初始化
   MT_UartRegisterTaskID(task_id); //注册串口任务
-   //HalUARTWrite(0,"success\n", 9);
+   HalUARTWrite(0,"success\n", 9);
    //HalUARTWrite(1,"success2\n", 9);
+  //HalLcdInit();
+  
+ 
+
    tmp[0] = HAL_UART_DMA+0x30;
   tmp[1] = HAL_UART_ISR+0x30;
   tmp[2] = HAL_UART_USB+0x30;
-    //HalUARTWrite(0, tmp, 6);
-   P0SEL &= 0x7f;           //P0_7配置成通用io 温湿度
+    //HalUARTWrite(0, "start_time", strlen("start_time"));
+   // HalUARTWrite(0, "\0", 1);
+   P0SEL &= 0x7c;           //P0_7配置成通用io 温湿度   
+    P0DIR |=0x01;  //P0_0为输出
+   //  P0DIR |=0x02;  //P0_1为输出
+   P0DIR &=0xfd; //P0_1为输入
+
+    // ds1302_init();
+    // ds1302_write_time();
    ReSetWifi();
    Delay_ms(1000);                //等待模块启动
-  HalUARTWrite(1,"AT\r\n",strlen("AT\r\n")); //发送AT检测WiFi模块
-  flat = 1;
+   HalUARTWrite(1,"AT\r\n",strlen("AT\r\n")); //发送AT检测WiFi模块
+    flat = 1;
+   // Get_Maopi();
+    //char buf_maopi[20];
+    
+    //sprintf((char *)buf_maopi,"{Weight_Maopi:%ld,}",Weight_Maopi);
+   //HalUARTWrite(0,buf_maopi, strlen(buf_maopi));  
  
   // Device hardware initialization can be added here or in main() (Zmain.c).
   // If the hardware is application specific - add it here.
@@ -279,10 +310,8 @@ void SampleApp_Init( uint8 task_id )
   SampleApp_Group.ID = 0x0001;
   osal_memcpy( SampleApp_Group.name, "Group 1", 7 );
   aps_AddGroup( SAMPLEAPP_ENDPOINT, &SampleApp_Group );
+ 
 
-#if defined ( LCD_SUPPORTED )
-  HalLcdWriteString( "SampleApp", HAL_LCD_LINE_1 );
-#endif
 }
 
 /*********************************************************************
@@ -302,7 +331,8 @@ uint16 SampleApp_ProcessEvent( uint8 task_id, uint16 events )
 {
   afIncomingMSGPacket_t *MSGpkt;
   (void)task_id;  // Intentionally unreferenced parameter
-
+  
+  
   if ( events & SYS_EVENT_MSG )
   {
     MSGpkt = (afIncomingMSGPacket_t *)osal_msg_receive( SampleApp_TaskID );
@@ -365,10 +395,29 @@ uint16 SampleApp_ProcessEvent( uint8 task_id, uint16 events )
     // Send the periodic message
     //SampleApp_SendPeriodicMessage();
     SampleApp_Send_P2P_Message();
-
+    //ds1302_read_time();
+  //  HalUARTWrite(0,time_buf,8);
+    //HalLcdWriteString(dis_time_buf,HAL_LCD_LINE_1);
+   // sprintf(time_buf,"time:%d",count++);
+     //HalLcdWriteString(time_buf,HAL_LCD_LINE_2);
+   // hour=dis_time_buf[8]*10+dis_time_buf[9];
+   // minute=dis_time_buf[10]*10+dis_time_buf[11];
+    
+   // if(hour==Sethour && minute==Setmiunte){
+   //   if(food_flag==0){
+   //       HalUARTWrite(0,"{ADD}",strlen("{ADD}"));
+   //       HalUARTWrite(0,"\0",1);
+   //       food_flag=60;
+   //   }
+   //    else food_flag--;               
+         
+  //  }
+  // HalLcdWriteString(dis_time_buf,HAL_LCD_LINE_1);
     // Setup to send message again in normal period (+ a little jitter)
     osal_start_timerEx( SampleApp_TaskID, SAMPLEAPP_SEND_PERIODIC_MSG_EVT,
         (SAMPLEAPP_SEND_PERIODIC_MSG_TIMEOUT+(osal_rand() & 0x00FF)));
+   // osal_start_timerEx( SampleApp_TaskID, SAMPLEAPP_SEND_PERIODIC_MSG_EVT,
+    //    SAMPLEAPP_SEND_PERIODIC_MSG_TIMEOUT);
 
     // return unprocessed events
     return (events ^ SAMPLEAPP_SEND_PERIODIC_MSG_EVT);
@@ -463,6 +512,8 @@ void publish_msg(afIncomingMSGPacket_t *pkt){
     pub_buf[6]=0x67;   //'g'
     strcpy(&pub_buf[7],pkt->cmd.Data);
     HalUARTWrite(1, pub_buf, pkt->cmd.DataLength+7);
+    // HalUARTWrite(0, pub_buf, pkt->cmd.DataLength+7);
+    // HalUARTWrite(0, '\0', 1);
 }
 
 //订阅主题
@@ -481,7 +532,32 @@ void sub_msg(void){
     sub_buf[8]=0x67;    //'g'
     sub_buf[9]=0x00;
     HalUARTWrite(1, sub_buf, 10);
+     //HalUARTWrite(0, sub_buf, 10);
+    //HalUARTWrite(0, '\0', 1);
 }
+//提取接收字符串中的数据
+int get_data(const char* data_name,char* recv,int recv_len){
+    char *str_head,*str_tail;
+    int data=0;
+    int data_len,data_name_len;
+    data_name_len=strlen(data_name);	
+    str_head=strstr(recv,data_name);
+    if(str_head==NULL) return 0;
+     //HalUARTWrite(0, str_head, strlen(str_head));
+    str_tail=strstr(str_head,",");
+    if(str_tail==NULL) return 0;
+    data_len=strlen(str_head)-strlen(str_tail)-data_name_len-1;
+    switch(data_len){
+            case 1:data=str_head[data_name_len+1]-'0';break;
+            case 2:data=(str_head[data_name_len+1]-'0')*10+(str_head[data_name_len+2]-'0');break;
+            case 3:data=(str_head[data_name_len+1]-'0')*100+(str_head[data_name_len+2]-'0')*10+(str_head[data_name_len+3]-'0');break;
+           // case 4:data=(str_head[data_name_len+1]-'0')*1000+(str_head[data_name_len+2]-'0')*100+str_head[data_name_len+3]*10+str_head[data_name_len+4];break;
+            default:break;
+    
+    }
+            
+            return data;
+ }
 
 
 /*********************************************************************
@@ -502,18 +578,19 @@ void sub_msg(void){
 void SampleApp_MessageMSGCB( afIncomingMSGPacket_t *pkt )
 {
   uint16 flashTime;
-  char HttpData[170];
+ // char HttpData[170];
   char send_data[70];
-  unsigned char data[64];
+  memset(send_data,0,70);
+ // unsigned char data[64];
+  unsigned char buftemp[32];
+  //unsigned char time_buf[32];
   unsigned char heart[2]={0xc0,0x00};
+  uint8 hour,minute;
   switch ( pkt->clusterId )
   {
     case SAMPLEAPP_P2P_CLUSTERID:
-
-      //HalUARTWrite(0, "ZIGBEE-WIFI OK1\r\n\0", 18);
-      //sprintf(send_data,"%s\0",pkt->cmd.Data);
-      //strcat(pkt->cmd.Data,'\0');
-      //HalUARTWrite(0,send_data,pkt->cmd.DataLength+1);
+      
+      //组包，发送到stm32主控
       strcpy(send_data,pkt->cmd.Data);
       send_data[pkt->cmd.DataLength-3]=',';
       send_data[pkt->cmd.DataLength-2]='}';
@@ -521,12 +598,53 @@ void SampleApp_MessageMSGCB( afIncomingMSGPacket_t *pkt )
       send_data[pkt->cmd.DataLength]='\n';
       HalUARTWrite(0,send_data,pkt->cmd.DataLength+1);
       HalUARTWrite(0, "\0", 1);
+      /*
+       ds1302_read_time();
+       sprintf(dis_time_buf,"y:%d,s:%d",(time_buf[6]>>4)*10+(time_buf[6]&0x0f)+2000,(time_buf[0]>>4)*10+(time_buf[0]&0x0f));
+      //HalUARTWrite(0,"{ADD}",strlen("{ADD}"));
+      HalLcdWriteString(dis_time_buf,HAL_LCD_LINE_1);
+      memset(dis_time_buf,0,16);
+     //sprintf(time_buf,"time:%d",count++);
+     //HalLcdWriteString(time_buf,HAL_LCD_LINE_2);
+      // hour=dis_time_buf[8]*10+dis_time_buf[9];
+      // minute=dis_time_buf[10]*10+dis_time_buf[11];
+       //HalLcdWriteString(time_buf,HAL_LCD_LINE_1);
+      if(hour==Sethour && minute==Setmiunte){
+        if(food_flag==0){
+          HalUARTWrite(0,"{ADD}",strlen("{ADD}"));
+          HalUARTWrite(0,"\0",1);
+          food_flag=60;
+      }
+       else food_flag--;               
+         
+      }
+      */
+    
+      //如果MQTT连接建立完成
       if(flat==7)
       {   
         //保持心跳
         HalUARTWrite(1,heart,2);
+        //订阅主题
+        sub_msg();
+        //上传数据点到OneNET云平台
         send_onenet(pkt);
-        publish_msg(pkt);
+        //发布主题
+        publish_msg(pkt);    
+        //在OLED显示
+          memset(buftemp,0,32);
+          sprintf(buftemp,"temp:%d",get_data("\"temp\"",send_data,pkt->cmd.DataLength+1));
+         HalLcdWriteString(buftemp,HAL_LCD_LINE_1);
+         memset(buftemp,0,32);
+         sprintf(buftemp,"humid:%d",get_data("\"humid\"",send_data,pkt->cmd.DataLength+1));
+        HalLcdWriteString(buftemp,HAL_LCD_LINE_2);
+         memset(buftemp,0,32);
+         sprintf(buftemp,"air:%d",get_data("\"Air\"",send_data,pkt->cmd.DataLength+1));
+        HalLcdWriteString(buftemp,HAL_LCD_LINE_3);
+        memset(buftemp,0,32);
+         sprintf(buftemp,"food:%d",get_data("\"food\"",send_data,pkt->cmd.DataLength+1));
+        HalLcdWriteString(buftemp,HAL_LCD_LINE_4);
+
        
       }
        else
@@ -536,7 +654,13 @@ void SampleApp_MessageMSGCB( afIncomingMSGPacket_t *pkt )
       
       break;    
     case SAMPLEAPP_PERIODIC_CLUSTERID:
-     
+      /*
+      HalUARTWrite(0,pkt->cmd.Data,pkt->cmd.DataLength);
+      HalUARTWrite(0, "\0", 1);
+      memset(buftemp,0,32);
+      sprintf(buftemp,"food:%d",get_data("food",pkt->cmd.Data,pkt->cmd.DataLength+1));
+      HalLcdWriteString(buftemp,HAL_LCD_LINE_1);
+      */
       break;
 
     case SAMPLEAPP_FLASH_CLUSTERID:
@@ -605,7 +729,7 @@ void SampleApp_SendFlashMessage( uint16 flashTime )
 }
 
 //读取MQ2传感器数据
-unsigned char TxBuf[30];
+unsigned char TxBuf[40];
 uint16 GasData;
 uint16 ReadGasData(void)
 {
@@ -647,12 +771,15 @@ void USART_Receive_messege(mtOSALSerialData_t *MSGpkt)
   
    //HalUARTWrite(0, "ZIGBEE-WIFI OK8\r\n", 17);
     char nn[100];  //mqtt连接缓存
-   // unsigned char recv_buf[64];
+     char disbuf[32];
+     int i;
+     //MQTT连接指令                       
+    unsigned char concmd[]={0x10,0x21,0x00,0x04,0x4D,0x51,0x54,0x54,0x04,0xC0,0x00,0x78,0x00,0x0A,0x31,0x30,0x37,0x39,0x39,0x36,0x38,0x39,0x34,0x37,0x00,0x06,0x35,0x39,0x30,0x39,0x34,0x35,0x00,0x01,0x32};
     mtOSALSerialData_t *p =MSGpkt;
-   // HalUARTWrite(1,(unsigned char*)(&p->msg[1]), p->msg[0]);
+  
     if(flat==7) //收到WIFI和平台交互数据
-
-      if(con_succ==0){
+    
+      if(con_succ==0 && p->msg[0]>1){
         if(p->msg[1]==0x20 && p->msg[2]==0x02) 
         {
             con_succ=1;
@@ -662,13 +789,19 @@ void USART_Receive_messege(mtOSALSerialData_t *MSGpkt)
           HalUARTWrite(1,concmd,35);
       
       }
+
       else{
         if(p->msg[0]>7){
           if(p->msg[1]==0x30 && p->msg[5]=='m' && p->msg[6]=='s' && p->msg[7]=='g')
             {
-              
-               HalUARTWrite(0,(unsigned char*)(&p->msg[8]), p->msg[0]-7);
+              HalUARTWrite(0,(unsigned char*)(&p->msg[8]), p->msg[0]-7);
                 HalUARTWrite(0,"\0",1);
+               // Sethour=get_data("hour",(char*)(&p->msg[8]), p->msg[0]-7);
+             //  Setmiunte=get_data("minute",(char*)(&p->msg[8]), p->msg[0]-7);
+               //sprintf(disbuf,"hour:%d,minu:%d",Sethour,Setmiunte);
+               
+                //LCD_CLS();
+                //HalLcdWriteString(disbuf,HAL_LCD_LINE_4);
             }
         
         
@@ -703,28 +836,47 @@ void USART_Receive_messege(mtOSALSerialData_t *MSGpkt)
        if(strstr((char const *)(&p->msg[1]),"OK"))
        {
           memset(nn,0,100);
-          sprintf(nn,"AT+CWJAP=\"%s\",\"%s\"\r\n",LYSSID,LYPASSWD);
+          sprintf(nn,"AT+CWJAP= \"%s\",\"%s\"\r\n",LYSSID,LYPASSWD);
           HalUARTWrite(1,(unsigned char*)nn, strlen(nn));//连接本地WiFi
-         
+          //显示连接路由
+          LCD_CLS();
+          for(i=0; i<2; i++){
+            LCD_P16x16Ch(16*i, 0, i+4);
+           }
+           for(i=2; i<5; i++){
+            LCD_P16x16Ch(16*i, 0, i+6);
+           }
           flat=3;
           Delay_ms(1000);Delay_ms(1000);
+          Delay_ms(1000);
+          Delay_ms(1000);
        }
     }
      else if(flat==3) //链接服务器
     {
-       if(strstr((char const *)(&p->msg[1]),"OK"))
-       {             
+    
          HalUARTWrite(1,CIPSTART_C, strlen(CIPSTART_C));//连接服务器
          flat=4;
-        
+        // HalLcdWriteString("connect onenet",HAL_LCD_LINE_2);
+         //显示连接OneNET中
+            for(i=0; i<2; i++){
+            LCD_P16x16Ch(16*i, 2, i+4);
+           }
+           LCD_P8x16Str(32, 2,"OneNET");
+            LCD_P16x16Ch(80, 2, 10);
+           
          Delay_ms(1000);Delay_ms(1000);Delay_ms(1000);
-       }
+      
+      
+      
+
     }
     else if(flat==4)  //设置透传模式
     {
        if(strstr((char const *)(&p->msg[1]),"OK"))
        {
           HalUARTWrite(1,CIPMODE_C, strlen(CIPMODE_C));//设置透传
+           HalUARTWrite(0,"cipmode\n", strlen("cipmode\n"));
           flat=5;
          
           Delay_ms(500);
@@ -743,6 +895,7 @@ void USART_Receive_messege(mtOSALSerialData_t *MSGpkt)
        if(strstr((char const *)(&p->msg[1]),"OK"))
        {
           HalUARTWrite(1,CIPSEND_C, strlen(CIPSEND_C));//发送
+          HalUARTWrite(0,"cipsend\n", strlen("cipsend\n"));
           flat=6;
           Delay_ms(500);
          
@@ -758,14 +911,18 @@ void USART_Receive_messege(mtOSALSerialData_t *MSGpkt)
     else if(flat==6)  //准备发送数据到服务器
     {
        if(strstr((char const *)(&p->msg[1]),">"))
-       {           
-        
-          
+       {      
+         
+         
+           //HalLcdWriteString("connected",HAL_LCD_LINE_2);
+         //连接成功
+          for(i=0; i<4; i++){
+            LCD_P16x16Ch(16*i, 4, i+4);
+           }
+           
             flat=7;
             HalUARTWrite(1,concmd,35);
-         
-            
-            //HalUARTWrite(0,concmd,strlen(concmd));
+          //HalUARTWrite(0,concmd,strlen(concmd));
        }
        else 
        {
@@ -776,11 +933,62 @@ void USART_Receive_messege(mtOSALSerialData_t *MSGpkt)
        }
     }
 
-
-
-
 }
 
+//获取毛皮重量
+//****************************************************
+void Get_Maopi(void)
+{
+  Weight_Maopi = HX711_Read();    
+}
+//****************************************************
+//称重
+//****************************************************
+long Get_Weight(void)
+{ //char buf_hx711[20];
+  HX711_Buffer = HX711_Read();
+  //sprintf((char *)buf_hx711,"{HX711_Buffer:%ld,}",HX711_Buffer);
+   //HalUARTWrite(0,buf_hx711, strlen(buf_hx711));  
+  Weight_Shiwu = HX711_Buffer;
+  if(Weight_Shiwu>Weight_Maopi){
+  Weight_Shiwu = Weight_Shiwu - Weight_Maopi;       //获取实物的AD采样数值。
+  }
+  else{
+    Weight_Shiwu=0;
+  }
+  
+   //sprintf((char *)buf_hx711,"{Weight_Shiwu:%ld,}",Weight_Shiwu);
+   //HalUARTWrite(0,buf_hx711, strlen(buf_hx711));
+  Weight_Shiwu = (long)((float)Weight_Shiwu/GapValue);  
+  return Weight_Shiwu;
+}
+
+//读压力传感器数据
+//#define ADDO P0_1
+//#define ADSK P0_0
+unsigned int HX711_Read(void)
+{
+ unsigned int Count;
+ unsigned char i;
+ P0_1=1;
+ //ADSK=1;
+Delay_us();
+ P0_0=0; //使能AD（PD_SCK 置低）
+ Delay_us();
+ Count=0;
+ while(P0_1); //AD转换未结束则等待，否则开始读取
+ for (i=0;i<24;i++)
+ {
+ P0_0=1; //PD_SCK 置高（发送脉冲）
+ Count=Count<<1; //下降沿来时变量Count左移一位，右侧补零
+ P0_0=0; //PD_SCK 置低
+ if(P0_1) Count++;
+ }
+ P0_0=1;
+ Count=Count^0x800000;//第25个脉冲下降沿来时，转换数据
+ P0_0=0;
+ return(Count);
+}
 
 /*********************************************************************
  * @fn      SampleApp_Send_P2P_Message
@@ -793,24 +1001,23 @@ void USART_Receive_messege(mtOSALSerialData_t *MSGpkt)
  */
 void SampleApp_Send_P2P_Message( void )
 {
-  GasData = ReadGasData();  //读取烟雾传感器引脚上的ad转换值，并没有换算成能表示烟雾浓度的值
-    //演示如何使用2530芯片的AD功能，更具体在组网中给出
-    
-    //读取到的数值转换成字符串，供串口函数输出
+ 
+  //unsigned char pre_txbuf[20];
   /*
-    TxBuf[0] = GasData / 100 + '0';
-    TxBuf[1] = GasData / 10%10 + '0';
-    TxBuf[2] = GasData % 10 + '0';
-    TxBuf[3] = '\n';
-    TxBuf[4] = 0;
-    */
+  if(getmaopi_flag==0){
+   Get_Maopi();
+   getmaopi_flag=1;
+  }*/
+  //读取烟雾传感器引脚上的ad转换值
+  GasData = ReadGasData();  
+   //读取温湿度传感器数据
   DHT11();
-  sprintf((char *)TxBuf,"{\"Air\":%d,\"temp\":%d,\"humid\":%d}\r\n",GasData,ucharT_data_H,ucharRH_data_H);
-  //sprintf((char *)TxBuf,",;Air,%d,temp,%d,humid,%d\r\n",GasData,ucharT_data_H,ucharRH_data_H);
-     //HalUARTWrite(0,TxBuf, strlen(TxBuf));                 //串口显示
-
-     
-     
+    //读取压力传感器数据
+   unsigned long food=Get_Weight();
+   
+  sprintf((char *)TxBuf,"{\"Air\":%d,\"temp\":%d,\"humid\":%d,\"food\":%ld}\r\n",GasData,ucharT_data_H,ucharRH_data_H,food);
+  HalUARTWrite(0,TxBuf, strlen(TxBuf));                 //串口显示  
+    
   if ( AF_DataRequest( &SampleApp_P2P_DstAddr, &SampleApp_epDesc,
                        SAMPLEAPP_P2P_CLUSTERID,
                       strlen(TxBuf),
@@ -822,9 +1029,25 @@ void SampleApp_Send_P2P_Message( void )
   }
   else
   {
-     HalUARTWrite(0,"error", 5); 
+     HalUARTWrite(0,"TxBuf error", 11); 
     // Error occurred in request to send.
   }
+/*
+   if ( AF_DataRequest( &SampleApp_P2P_DstAddr, &SampleApp_epDesc,
+                       SAMPLEAPP_PERIODIC_CLUSTERID,
+                      strlen(pre_txbuf),
+                      pre_txbuf,
+                       &SampleApp_TransID,
+                       AF_DISCV_ROUTE,
+                       AF_DEFAULT_RADIUS ) == afStatus_SUCCESS )
+  {
+  }
+  else
+  {
+     HalUARTWrite(0,"pre_txbuf error", 15); 
+    // Error occurred in request to send.
+  }
+*/
 }
 /*********************************************************************
 *********************************************************************/

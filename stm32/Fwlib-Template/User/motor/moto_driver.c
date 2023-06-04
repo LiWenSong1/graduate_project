@@ -62,7 +62,7 @@ void TIM4_init(void){
 	TIM_OCInitStruct.TIM_OCMode=TIM_OCMode_PWM2;//定时器模式，TIM脉冲宽度调制模式2
 	TIM_OCInitStruct.TIM_OCPolarity=TIM_OCPolarity_High;
 	TIM_OCInitStruct.TIM_OutputState=TIM_OutputState_Enable;
-	TIM_OCInitStruct.TIM_Pulse=710;
+	TIM_OCInitStruct.TIM_Pulse=700;
 	TIM_OC4Init(TIM4, &TIM_OCInitStruct);
 	TIM_OC1Init(TIM4, &TIM_OCInitStruct);
 	TIM_ARRPreloadConfig(TIM4, ENABLE);

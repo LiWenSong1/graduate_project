@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         25/Apr/2023  01:16:17 #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         26/May/2023  12:04:33 #
 # Copyright 2004-2011 IAR Systems AB.                                         #
 #                                                                             #
 #    Core               =  plain                                              #
@@ -122,7 +122,7 @@
 #                          \ -I C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC #
 #                          2530-2.3.0-1.4.0\Projects\zstack\Samples\SampleApp #
 #                          \CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LEVEL\ #
-#                          srf04\SINGLE_CHIP\ -Ohz --require_prototypes       #
+#                          srf04\SINGLE_CHIP\ -Ohz                            #
 #    List file          =  C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
 #                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
 #                          30DB\CoordinatorEB-Pro\List\nwk_globals.lst        #
@@ -158,7 +158,7 @@ C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530-2.3.0-1.4.0\Components\stack\n
      22            its documentation for any purpose.
      23          
      24            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
-     25            PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, 
+     25            PROVIDED “AS IS?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, 
      26            INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE, 
      27            NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
      28            TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
@@ -1043,215 +1043,80 @@ C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530-2.3.0-1.4.0\Components\stack\n
     434          void nwk_Status( uint16 statusCode, uint16 statusValue )
    \                     nwk_Status:
     435          {
-   \   000000   74F0         MOV     A,#-0x10
-   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
-   \   000005                ; Saved register size: 16
-   \   000005                ; Auto size: 0
-   \   000005   EC           MOV     A,R4
-   \   000006   FE           MOV     R6,A
-   \   000007   ED           MOV     A,R5
-   \   000008   FF           MOV     R7,A
-    436          #if defined ( LCD_SUPPORTED )
-    437            switch ( statusCode )
-   \   000009   8E..         MOV     ?V0 + 4,R6
-   \   00000B   8F..         MOV     ?V0 + 5,R7
-   \   00000D   E4           CLR     A
-   \   00000E   F5..         MOV     ?V0 + 6,A
-   \   000010   F5..         MOV     ?V0 + 7,A
-   \   000012   8A..         MOV     ?V0 + 0,R2
-   \   000014   8B..         MOV     ?V0 + 1,R3
-   \   000016   78..         MOV     R0,#?V0 + 0
-   \   000018   12....       LCALL   ?US_SWITCH_SPARSE
-   \                     `?<Jumptable for nwk_Status>_0`:
-   \   00001B   0000         DW        0
-   \   00001D   0800         DW        8
-   \   00001F   0200         DW        2
-   \   000021   ....         DW        ??nwk_Status_0
-   \   000023   0400         DW        4
-   \   000025   ....         DW        ??nwk_Status_1
-   \   000027   0500         DW        5
-   \   000029   ....         DW        ??nwk_Status_2
-   \   00002B   0600         DW        6
-   \   00002D   ....         DW        ??nwk_Status_3
-   \   00002F   0700         DW        7
-   \   000031   ....         DW        ??nwk_Status_4
-   \   000033   0110         DW        4097
-   \   000035   ....         DW        ??nwk_Status_5
-   \   000037   0310         DW        4099
-   \   000039   ....         DW        ??nwk_Status_6
-   \   00003B   0410         DW        4100
-   \   00003D   ....         DW        ??nwk_Status_7
-   \   00003F   ....         DW        ??nwk_Status_8
-    438            {
-    439              case NWK_STATUS_COORD_ADDR:
-    440                if ( ZSTACK_ROUTER_BUILD )
-    441                {
-    442                  HalLcdWriteString( (char*)ZigbeeCoordStr, HAL_LCD_LINE_1 );
-   \                     ??nwk_Status_2:
-   \   000041                ; Setup parameters for call to function HalLcdWriteString
-   \   000041   7901         MOV     R1,#0x1
-   \   000043   7A..         MOV     R2,#ZigbeeCoordStr & 0xff
-   \   000045   7B..         MOV     R3,#(ZigbeeCoordStr >> 8) & 0xff
-   \   000047   12....       LCALL   ?Subroutine2 & 0xFFFF
-    443                  HalLcdWriteStringValue( (char*)NetworkIDStr, statusValue, 16, HAL_LCD_LINE_2 );
-   \                     ??CrossCallReturnLabel_2:
-   \   00004A   12....       LCALL   ?PUSH_XSTACK_I_ONE
-   \   00004D   7910         MOV     R1,#0x10
-   \   00004F   EE           MOV     A,R6
-   \   000050   FC           MOV     R4,A
-   \   000051   EF           MOV     A,R7
-   \   000052   FD           MOV     R5,A
-   \   000053   7A..         MOV     R2,#NetworkIDStr & 0xff
-   \   000055   7B..         MOV     R3,#(NetworkIDStr >> 8) & 0xff
-   \   000057   12....       LCALL   ??HalLcdWriteStringValue?relay
-   \   00005A   7401         MOV     A,#0x1
-   \   00005C   12....       LCALL   ?DEALLOC_XSTACK8
-    444                  BuzzerControl( BUZZER_BLIP );
-   \   00005F                ; Setup parameters for call to function BuzzerControl
-   \   00005F   7902         MOV     R1,#0x2
-   \   000061   12....       LCALL   ??BuzzerControl?relay
-    445                }
-    446                break;
-   \   000064   8074         SJMP    ??nwk_Status_8
-    447          
-    448              case NWK_STATUS_ROUTER_ADDR:
-    449                if ( ZSTACK_ROUTER_BUILD )
-    450                {
-    451                  HalLcdWriteStringValue( (char*)RouterStr, statusValue, 16, HAL_LCD_LINE_1 );
-   \                     ??nwk_Status_3:
-   \   000066                ; Setup parameters for call to function HalLcdWriteStringValue
-   \   000066   75..01       MOV     ?V0 + 0,#0x1
-   \   000069   78..         MOV     R0,#?V0 + 0
-   \   00006B   12....       LCALL   ?PUSH_XSTACK_I_ONE
-   \   00006E   7910         MOV     R1,#0x10
-   \   000070   7A..         MOV     R2,#RouterStr & 0xff
-   \   000072   7B..         MOV     R3,#(RouterStr >> 8) & 0xff
-   \                     ??nwk_Status_9:
-   \   000074   12....       LCALL   ??HalLcdWriteStringValue?relay
-   \                     ??nwk_Status_10:
-   \   000077   7401         MOV     A,#0x1
-   \   000079   12....       LCALL   ?DEALLOC_XSTACK8
-    452                }
-    453                break;
-   \   00007C   805C         SJMP    ??nwk_Status_8
-    454          
-    455              case NWK_STATUS_ORPHAN_RSP:
-    456                if ( ZSTACK_ROUTER_BUILD )
-    457                {
-    458                  if ( statusValue == ZSuccess )
-   \                     ??nwk_Status_4:
-   \   00007E   7A..         MOV     R2,#OrphanRspStr & 0xff
-   \   000080   7B..         MOV     R3,#(OrphanRspStr >> 8) & 0xff
-   \   000082   EE           MOV     A,R6
-   \   000083   4F           ORL     A,R7
-   \   000084   7006         JNZ     ??nwk_Status_11
-    459                    HalLcdWriteScreen( (char*)OrphanRspStr, (char*)SentStr );
-   \   000086                ; Setup parameters for call to function HalLcdWriteScreen
-   \   000086   7C..         MOV     R4,#SentStr & 0xff
-   \   000088   7D..         MOV     R5,#(SentStr >> 8) & 0xff
-   \   00008A   804B         SJMP    ??nwk_Status_12
-    460                  else
-    461                    HalLcdWriteScreen( (char*)OrphanRspStr, (char*)FailedStr );
-   \                     ??nwk_Status_11:
-   \   00008C                ; Setup parameters for call to function HalLcdWriteScreen
-   \   00008C   7C..         MOV     R4,#FailedStr & 0xff
-   \   00008E   7D..         MOV     R5,#(FailedStr >> 8) & 0xff
-   \   000090   8045         SJMP    ??nwk_Status_12
-    462                }
-    463                break;
-    464          
-    465              case NWK_ERROR_ASSOC_RSP:
-    466                if ( ZSTACK_ROUTER_BUILD )
-    467                {
-    468                  HalLcdWriteString( (char*)AssocRspFailStr, HAL_LCD_LINE_1 );
-   \                     ??nwk_Status_5:
-   \   000092                ; Setup parameters for call to function HalLcdWriteString
-   \   000092   7901         MOV     R1,#0x1
-   \   000094   7A..         MOV     R2,#AssocRspFailStr & 0xff
-   \   000096   7B..         MOV     R3,#(AssocRspFailStr >> 8) & 0xff
-    469                  HalLcdWriteValue( (uint32)(statusValue), 16, HAL_LCD_LINE_2 );
-    470                }
-   \                     ??nwk_Status_13:
-   \   000098   12....       LCALL   ?Subroutine2 & 0xFFFF
-   \                     ??CrossCallReturnLabel_3:
-   \   00009B   12....       LCALL   ?PUSH_XSTACK_I_ONE
-   \   00009E   7910         MOV     R1,#0x10
-   \   0000A0   AA..         MOV     R2,?V0 + 4
-   \   0000A2   AB..         MOV     R3,?V0 + 5
-   \   0000A4   AC..         MOV     R4,?V0 + 6
-   \   0000A6   AD..         MOV     R5,?V0 + 7
-   \   0000A8   12....       LCALL   ??HalLcdWriteValue?relay
-   \   0000AB   80CA         SJMP    ??nwk_Status_10
-    471                break;
-    472                
-    473              case NWK_STATUS_ED_ADDR:
-    474                if ( ZSTACK_END_DEVICE_BUILD )
-    475                {
-    476                  HalLcdWriteStringValue( (char*)EndDeviceStr, statusValue, 16, HAL_LCD_LINE_1 );
-    477                }
-    478                break;
-    479          
-    480              case NWK_STATUS_PARENT_ADDR:
-    481                      HalLcdWriteStringValue( (char*)ParentStr, statusValue, 16, HAL_LCD_LINE_2 );
-   \                     ??nwk_Status_1:
-   \   0000AD                ; Setup parameters for call to function HalLcdWriteStringValue
-   \   0000AD   75..02       MOV     ?V0 + 0,#0x2
-   \   0000B0   78..         MOV     R0,#?V0 + 0
-   \   0000B2   12....       LCALL   ?PUSH_XSTACK_I_ONE
-   \   0000B5   7910         MOV     R1,#0x10
-   \   0000B7   7A..         MOV     R2,#ParentStr & 0xff
-   \   0000B9   7B..         MOV     R3,#(ParentStr >> 8) & 0xff
-   \   0000BB   80B7         SJMP    ??nwk_Status_9
-    482                break;
-    483          
-    484              case NWK_STATUS_ASSOC_CNF:
-    485                HalLcdWriteScreen( (char*)AssocCnfStr, (char*)SuccessStr );
-   \                     ??nwk_Status_0:
-   \   0000BD                ; Setup parameters for call to function HalLcdWriteScreen
-   \   0000BD   7C..         MOV     R4,#SuccessStr & 0xff
-   \   0000BF   7D..         MOV     R5,#(SuccessStr >> 8) & 0xff
-   \   0000C1   7A..         MOV     R2,#AssocCnfStr & 0xff
-   \   0000C3   7B..         MOV     R3,#(AssocCnfStr >> 8) & 0xff
-   \   0000C5   8010         SJMP    ??nwk_Status_12
-    486                break;
-    487          
-    488              case NWK_ERROR_ASSOC_CNF_DENIED:
-    489                HalLcdWriteString((char*)AssocCnfFailStr, HAL_LCD_LINE_1 );
-   \                     ??nwk_Status_6:
-   \   0000C7                ; Setup parameters for call to function HalLcdWriteString
-   \   0000C7   7901         MOV     R1,#0x1
-   \   0000C9   7A..         MOV     R2,#AssocCnfFailStr & 0xff
-   \   0000CB   7B..         MOV     R3,#(AssocCnfFailStr >> 8) & 0xff
-   \   0000CD   80C9         SJMP    ??nwk_Status_13
-    490                HalLcdWriteValue( (uint32)(statusValue), 16, HAL_LCD_LINE_2 );
-    491                break;
-    492          
-    493              case NWK_ERROR_ENERGY_SCAN_FAILED:
-    494                HalLcdWriteScreen( (char*)EnergyLevelStr, (char*)ScanFailedStr );
-   \                     ??nwk_Status_7:
-   \   0000CF                ; Setup parameters for call to function HalLcdWriteScreen
-   \   0000CF   7C..         MOV     R4,#ScanFailedStr & 0xff
-   \   0000D1   7D..         MOV     R5,#(ScanFailedStr >> 8) & 0xff
-   \   0000D3   7A..         MOV     R2,#EnergyLevelStr & 0xff
-   \   0000D5   7B..         MOV     R3,#(EnergyLevelStr >> 8) & 0xff
-   \                     ??nwk_Status_12:
-   \   0000D7   12....       LCALL   ??HalLcdWriteScreen?relay
-    495                break;
-    496            }
-    497          #endif
-    498          }
-   \                     ??nwk_Status_8:
-   \   0000DA   7F08         MOV     R7,#0x8
-   \   0000DC   02....       LJMP    ?BANKED_LEAVE_XDATA
-
-   \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine2:
-   \   000000   12....       LCALL   ??HalLcdWriteString?relay
-   \   000003                ; Setup parameters for call to function HalLcdWriteStringValue
-   \   000003                ; Setup parameters for call to function HalLcdWriteValue
-   \   000003   75..02       MOV     ?V0 + 0,#0x2
-   \   000006   78..         MOV     R0,#?V0 + 0
-   \   000008   22           RET
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    436          
+    437          #if defined ( LCD_SUPPORTED )
+    438              /*
+    439            switch ( statusCode )
+    440            {
+    441              case NWK_STATUS_COORD_ADDR:
+    442                if ( ZSTACK_ROUTER_BUILD )
+    443                {
+    444                  //HalLcdWriteString( (char*)ZigbeeCoordStr, HAL_LCD_LINE_1 );
+    445                 // HalLcdWriteStringValue( (char*)NetworkIDStr, statusValue, 16, HAL_LCD_LINE_2 );
+    446                  BuzzerControl( BUZZER_BLIP );
+    447                }
+    448                break;
+    449          
+    450              case NWK_STATUS_ROUTER_ADDR:
+    451                if ( ZSTACK_ROUTER_BUILD )
+    452                {
+    453                 // HalLcdWriteStringValue( (char*)RouterStr, statusValue, 16, HAL_LCD_LINE_1 );
+    454                }
+    455                break;
+    456          
+    457              case NWK_STATUS_ORPHAN_RSP:
+    458                if ( ZSTACK_ROUTER_BUILD )
+    459                {
+    460                  if ( statusValue == ZSuccess )
+    461                   // HalLcdWriteScreen( (char*)OrphanRspStr, (char*)SentStr )
+    462                   
+    463                  else
+    464                    //HalLcdWriteScreen( (char*)OrphanRspStr, (char*)FailedStr )
+    465                
+    466                }
+    467                break;
+    468          
+    469              case NWK_ERROR_ASSOC_RSP:
+    470                if ( ZSTACK_ROUTER_BUILD )
+    471                {
+    472                  //HalLcdWriteString( (char*)AssocRspFailStr, HAL_LCD_LINE_1 );
+    473                  //HalLcdWriteValue( (uint32)(statusValue), 16, HAL_LCD_LINE_2 )
+    474                  ;
+    475                }
+    476                break;
+    477                
+    478              case NWK_STATUS_ED_ADDR:
+    479                if ( ZSTACK_END_DEVICE_BUILD )
+    480                {
+    481                  //HalLcdWriteStringValue( (char*)EndDeviceStr, statusValue, 16, HAL_LCD_LINE_1 )
+    482                  ;
+    483                }
+    484                break;
+    485          
+    486              case NWK_STATUS_PARENT_ADDR:
+    487                     // HalLcdWriteStringValue( (char*)ParentStr, statusValue, 16, HAL_LCD_LINE_2 )
+    488                     
+    489                break;
+    490          
+    491              case NWK_STATUS_ASSOC_CNF:
+    492               // HalLcdWriteScreen( (char*)AssocCnfStr, (char*)SuccessStr );
+    493                break;
+    494          
+    495              case NWK_ERROR_ASSOC_CNF_DENIED:
+    496              //  HalLcdWriteString((char*)AssocCnfFailStr, HAL_LCD_LINE_1 );
+    497               // HalLcdWriteValue( (uint32)(statusValue), 16, HAL_LCD_LINE_2 );
+    498                break;
+    499          
+    500              case NWK_ERROR_ENERGY_SCAN_FAILED:
+    501                //HalLcdWriteScreen( (char*)EnergyLevelStr, (char*)ScanFailedStr );
+    502                break;
+    503            }
+    504                */
+    505          #endif
+    506          }
+   \   000000   02....       LJMP    ?BRET
 
    \                                 In  segment XDATA_ID, align 1, keep-with-next
    \                     `?<Initializer for gMIN_TREE_LINK_COST>`:
@@ -1271,9 +1136,9 @@ C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530-2.3.0-1.4.0\Components\stack\n
    \                     ??nwk_Status?relay:
    \   000000   12....       LCALL   ?BDISPATCH
    \   000003   ......       DC24    nwk_Status
-    499          
-    500          /*********************************************************************
-    501          *********************************************************************/
+    507          
+    508          /*********************************************************************
+    509          *********************************************************************/
 
    Maximum stack usage in bytes:
 
@@ -1285,20 +1150,7 @@ C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530-2.3.0-1.4.0\Components\stack\n
        -> sAddrExtCpy                   4      0      0
        -> NLME_InitStochasticAddressing
                                         4      0      0
-     nwk_Status                         0      0     17
-       -> HalLcdWriteString             0      0     32
-       -> HalLcdWriteStringValue        0      0     34
-       -> BuzzerControl                 0      0     32
-       -> HalLcdWriteStringValue        0      0     34
-       -> HalLcdWriteScreen             0      0     32
-       -> HalLcdWriteScreen             0      0     32
-       -> HalLcdWriteString             0      0     32
-       -> HalLcdWriteValue              0      0     34
-       -> HalLcdWriteStringValue        0      0     34
-       -> HalLcdWriteScreen             0      0     32
-       -> HalLcdWriteString             0      0     32
-       -> HalLcdWriteValue              0      0     34
-       -> HalLcdWriteScreen             0      0     32
+     nwk_Status                         0      0      0
      nwk_globals_init                   2      0      0
        -> AddrMgrInit                   4      0      0
        -> NLME_InitLinkStatus           4      0      0
@@ -1370,15 +1222,14 @@ C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530-2.3.0-1.4.0\Components\stack\n
      ?Subroutine0                              7
      NIB_init                                233
      ?Subroutine1                              9
-     nwk_Status                              223
-     ?Subroutine2                              9
+     nwk_Status                                3
      ?<Initializer for gMIN_TREE_LINK_COST>    1
      ??nwk_globals_init?relay                  6
      ??NIB_init?relay                          6
      ??nwk_Status?relay                        6
 
  
-   498 bytes in segment BANKED_CODE
+   269 bytes in segment BANKED_CODE
     18 bytes in segment BANK_RELAYS
     58 bytes in segment CODE_C
      1 byte  in segment XDATA_I
@@ -1386,7 +1237,7 @@ C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530-2.3.0-1.4.0\Components\stack\n
    178 bytes in segment XDATA_ROM_C
  1 363 bytes in segment XDATA_Z
  
-   575 bytes of CODE  memory
+   346 bytes of CODE  memory
    178 bytes of CONST memory
  1 364 bytes of XDATA memory
 

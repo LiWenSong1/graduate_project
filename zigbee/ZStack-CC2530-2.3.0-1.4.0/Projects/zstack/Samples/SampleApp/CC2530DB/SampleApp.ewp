@@ -150,7 +150,7 @@
         </option>
         <option>
           <name>RTLibraryPath</name>
-          <state>$TOOLKIT_DIR$\LIB\CLIB\cl-pli-blxd-1e16x01.r51</state>
+          <state>$TOOLKIT_DIR$\LIB\CLIB\cl-pli-blpd-1e16x01.r51</state>
         </option>
         <option>
           <name>Input variant</name>
@@ -347,7 +347,7 @@
         </option>
         <option>
           <name>CCRequirePrototypes</name>
-          <state>1</state>
+          <state>0</state>
         </option>
         <option>
           <name>CCMultibyteSupport</name>
@@ -3190,6 +3190,12 @@
     </file>
     <file>
       <name>$PROJ_DIR$\DHT11.H</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\DS1302.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\DS1302.h</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\Source\OSAL_SampleApp.c</name>

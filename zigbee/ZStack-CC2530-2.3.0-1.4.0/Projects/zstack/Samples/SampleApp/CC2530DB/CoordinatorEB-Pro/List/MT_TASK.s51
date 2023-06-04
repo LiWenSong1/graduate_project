@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                            /
-// IAR C/C++ Compiler V8.10.3.10338/W32 for 8051        25/Apr/2023  01:16:15 /
+// IAR C/C++ Compiler V8.10.3.10338/W32 for 8051        26/May/2023  12:04:32 /
 // Copyright 2004-2011 IAR Systems AB.                                        /
 //                                                                            /
 //    Core               =  plain                                             /
@@ -124,7 +124,6 @@
 //                          衅鱘ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\Sam /
 //                          ples\SampleApp\CC2530DB\..\..\..\..\..\COMPONENTS /
 //                          \MAC\LOW_LEVEL\srf04\SINGLE_CHIP\ -Ohz            /
-//                          --require_prototypes                              /
 //    List file          =  C:\Users\86158\Desktop\8.气体传感器\ZStack-CC2530 /
 //                          -2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC /
 //                          2530DB\CoordinatorEB-Pro\List\MT_TASK.s51         /

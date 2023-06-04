@@ -1,0 +1,829 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         26/May/2023  12:04:33 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\DS1302.c                                      #
+#    Command line       =  -f C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC25 #
+#                          30-2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\C #
+#                          C2530DB\..\..\..\Tools\CC2530DB\f8wCoord.cfg       #
+#                          (-DCPU32MHZ -DROOT=__near_func                     #
+#                          -DMAC_CFG_APP_PENDING_QUEUE=TRUE                   #
+#                          -DZDO_COORDINATOR -DRTR_NWK -DBLINK_LEDS) -f       #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg         #
+#                          (-DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR      #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFF1                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116 "-DCONST=const __code"    #
+#                          -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE     #
+#                          -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100            #
+#                          -DRESPONSE_POLL_RATE=100) -DREJOIN_POLL_RATE=440   #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\DS1302.c -D ZIGBEEPRO -D ZTOOL_P1 -D          #
+#                          xMT_TASK -D xMT_SYS_FUNC -D xMT_ZDO_FUNC -D        #
+#                          LCD_SUPPORTED=DEBUG -lC C:\Users\86158\Desktop\8.Æ #
+#                          øÌå´«¸ÐÆ÷\ZStack-CC2530-2.3.0-1.4.0\Projects\zstac #
+#                          k\Samples\SampleApp\CC2530DB\CoordinatorEB-Pro\Lis #
+#                          t\ -lA C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack- #
+#                          CC2530-2.3.0-1.4.0\Projects\zstack\Samples\SampleA #
+#                          pp\CC2530DB\CoordinatorEB-Pro\List\                #
+#                          --diag_suppress Pe001,Pa010 -o                     #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\CoordinatorEB-Pro\Obj\ -e --debug             #
+#                          --core=plain --dptr=16,1 --data_model=large        #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data_rom                  #
+#                          --nr_virtual_regs 16 -I C:\Users\86158\Desktop\8.Æ #
+#                          øÌå´«¸ÐÆ÷\ZStack-CC2530-2.3.0-1.4.0\Projects\zstac #
+#                          k\Samples\SampleApp\CC2530DB\ -I                   #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\SOURCE\ -I C:\Users\86158\Desktop\8.ÆøÌå´« #
+#                          ¸ÐÆ÷\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\Sam #
+#                          ples\SampleApp\CC2530DB\..\..\..\ZMAIN\TI2530DB\   #
+#                          -I C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC25 #
+#                          30-2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\C #
+#                          C2530DB\..\..\..\..\..\COMPONENTS\MT\ -I           #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\HAL\INCLUDE\ -I     #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\HAL\TARGET\CC2530EB #
+#                          \ -I C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC #
+#                          2530-2.3.0-1.4.0\Projects\zstack\Samples\SampleApp #
+#                          \CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\MCU\CCSOC #
+#                          \ -I C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC #
+#                          2530-2.3.0-1.4.0\Projects\zstack\Samples\SampleApp #
+#                          \CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\INCLUDE\  #
+#                          -I C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC25 #
+#                          30-2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\C #
+#                          C2530DB\..\..\..\..\..\COMPONENTS\STACK\AF\ -I     #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\STACK\NWK\ -I       #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\STACK\SEC\ -I       #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\STACK\SAPI\ -I      #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\STACK\SYS\ -I       #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\STACK\ZDO\ -I       #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\ZMAC\F8W\ -I        #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\ZMAC\ -I            #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\SERVICES\SADDR\ -I  #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\SERVICES\SDATA\ -I  #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\MAC\INCLUDE\ -I     #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\MAC\HIGH_LEVEL\ -I  #
+#                          C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LEVEL\srf04 #
+#                          \ -I C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC #
+#                          2530-2.3.0-1.4.0\Projects\zstack\Samples\SampleApp #
+#                          \CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LEVEL\ #
+#                          srf04\SINGLE_CHIP\ -Ohz                            #
+#    List file          =  C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\CoordinatorEB-Pro\List\DS1302.lst             #
+#    Object file        =  C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530- #
+#                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
+#                          30DB\CoordinatorEB-Pro\Obj\DS1302.r51              #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\86158\Desktop\8.ÆøÌå´«¸ÐÆ÷\ZStack-CC2530-2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC2530DB\DS1302.c
+      1          #include <ioCC2530.h>
+
+   \                                 In  segment SFR_AN, at 0x80
+   \   union <unnamed> volatile __sfr _A_P0
+   \                     _A_P0:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfd
+   \   unsigned char volatile __sfr P0DIR
+   \                     P0DIR:
+   \   000000                DS 1
+      2          #include "hal_types.h"
+      3          #include "hal_lcd.h"
+      4          #include "DHT11.h"
+      5          //DS1302Òý½Å¶¨Òå
+      6          #define RST P0_7
+      7          #define IO P0_1
+      8          #define SCK P0_0
+      9          //DS1302µØÖ·¶¨Òå
+     10          #define ds1302_sec_add			0x80		//ÃëÊý¾ÝµØÖ·
+     11          #define ds1302_min_add			0x82		//·ÖÊý¾ÝµØÖ·
+     12          #define ds1302_hr_add			0x84		//Ê±Êý¾ÝµØÖ·
+     13          #define ds1302_date_add			0x86		//ÈÕÊý¾ÝµØÖ·
+     14          #define ds1302_month_add		0x88		//ÔÂÊý¾ÝµØÖ·
+     15          #define ds1302_day_add			0x8a		//ÐÇÆÚÊý¾ÝµØÖ·
+     16          #define ds1302_year_add			0x8c		//ÄêÊý¾ÝµØÖ·
+     17          #define ds1302_control_add		0x8e		//¿ØÖÆÊý¾ÝµØÖ·
+     18          #define ds1302_charger_add		0x90 					 
+     19          #define ds1302_clkburst_add		0xbe
+     20          //³õÊ¼Ê±¼ä¶¨Òå
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+     21          unsigned char time_buf[8] = {0x20,0x23,0x05,0x25,0x16,0x32,0x01,0x04};//³õÊ¼Ê±¼ä2010Äê6ÔÂ1ºÅ23µã59·Ö55Ãë ÐÇÆÚ¶þ
+   \                     time_buf:
+   \   000000                DS 8
+   \   000008                REQUIRE `?<Initializer for time_buf>`
+   \   000008                REQUIRE __INIT_XDATA_I
+     22          //unsigned char time_buf[8] ="sdsd";//³õÊ¼Ê±¼ä2010Äê6ÔÂ1ºÅ23µã59·Ö55Ãë ÐÇÆÚ¶þ
+     23          //uint16 count=0;
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     24          unsigned char dis_time_buf[16]={0};
+   \                     dis_time_buf:
+   \   000000                DS 16
+   \   000010                REQUIRE __INIT_XDATA_Z
+     25          
+     26          void ds1302_init(void);
+     27          void ds1302_write_byte(unsigned char addr, unsigned char d);
+     28          unsigned char ds1302_read_byte(unsigned char addr);
+     29          //void ds1302_write_time(void);
+     30          
+     31          void ds1302_read_time(void);
+     32          //void InitT3(void);
+     33          //DS1302³õÊ¼»¯º¯Êý
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     34          void ds1302_init(void)
+   \                     ds1302_init:
+     35          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     36             
+     37          	ds1302_write_byte(0x8e,0x00);//¹Ø±ÕÐ´±£»¤
+   \   000004                ; Setup parameters for call to function ds1302_write_byte
+   \   000004   7A00         MOV     R2,#0x0
+   \   000006   798E         MOV     R1,#-0x72
+   \   000008   12....       LCALL   ??ds1302_write_byte?relay
+     38          	ds1302_write_byte(0x80,0x37);//seconds37Ãë
+   \   00000B                ; Setup parameters for call to function ds1302_write_byte
+   \   00000B   7A37         MOV     R2,#0x37
+   \   00000D   7980         MOV     R1,#-0x80
+   \   00000F   12....       LCALL   ??ds1302_write_byte?relay
+     39          	ds1302_write_byte(0x82,0x58);//minutes58·Ö
+   \   000012                ; Setup parameters for call to function ds1302_write_byte
+   \   000012   7A58         MOV     R2,#0x58
+   \   000014   7982         MOV     R1,#-0x7e
+   \   000016   12....       LCALL   ??ds1302_write_byte?relay
+     40          	ds1302_write_byte(0x84,0x23);//hours23Ê±
+   \   000019                ; Setup parameters for call to function ds1302_write_byte
+   \   000019   7A23         MOV     R2,#0x23
+   \   00001B   7984         MOV     R1,#-0x7c
+   \   00001D   12....       LCALL   ??ds1302_write_byte?relay
+     41          	ds1302_write_byte(0x86,0x30);//date30ÈÕ
+   \   000020                ; Setup parameters for call to function ds1302_write_byte
+   \   000020   7A30         MOV     R2,#0x30
+   \   000022   7986         MOV     R1,#-0x7a
+   \   000024   12....       LCALL   ??ds1302_write_byte?relay
+     42          	ds1302_write_byte(0x88,0x09);//months9ÔÂ
+   \   000027                ; Setup parameters for call to function ds1302_write_byte
+   \   000027   7A09         MOV     R2,#0x9
+   \   000029   7988         MOV     R1,#-0x78
+   \   00002B   12....       LCALL   ??ds1302_write_byte?relay
+     43          	ds1302_write_byte(0x8a,0x07);//daysÐÇÆÚÈÕ
+   \   00002E                ; Setup parameters for call to function ds1302_write_byte
+   \   00002E   7A07         MOV     R2,#0x7
+   \   000030   798A         MOV     R1,#-0x76
+   \   000032   12....       LCALL   ??ds1302_write_byte?relay
+     44          	ds1302_write_byte(0x8c,0x20);//year2020Äê
+   \   000035                ; Setup parameters for call to function ds1302_write_byte
+   \   000035   7A20         MOV     R2,#0x20
+   \   000037   798C         MOV     R1,#-0x74
+   \   000039   12....       LCALL   ??ds1302_write_byte?relay
+     45          	ds1302_write_byte(0x8e,0x80);//¹Ø±ÕÐ´±£»¤
+   \   00003C                ; Setup parameters for call to function ds1302_write_byte
+   \   00003C   7A80         MOV     R2,#-0x80
+   \   00003E   798E         MOV     R1,#-0x72
+   \   000040   12....       LCALL   ??ds1302_write_byte?relay
+     46          }
+   \   000043                REQUIRE ?Subroutine0
+   \   000043                ; // Fall through to label ?Subroutine0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   D083         POP     DPH
+   \   000002   D082         POP     DPL
+   \   000004   02....       LJMP    ?BRET
+     47          
+     48          //ÏòDS1302Ð´ÈëÒ»×Ö½ÚÊý¾Ý
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     49          void ds1302_write_byte(unsigned char addr, unsigned char d) 
+   \                     ds1302_write_byte:
+     50          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   E9           MOV     A,R1
+   \   000006   FF           MOV     R7,A
+   \   000007   8A..         MOV     ?V0 + 0,R2
+     51                //P0DIR |=0x02;  //P0_1ÎªÊä³ö
+     52          	unsigned char i;
+     53                  SCK=0;
+   \   000009   C280         CLR     0x80.0
+     54                  RST=0;
+   \   00000B   C287         CLR     0x80.7
+     55                  Delay_us();
+   \   00000D                ; Setup parameters for call to function Delay_us
+   \   00000D   12....       LCALL   ?Subroutine3 & 0xFFFF
+     56          	RST=1;	
+     57                  Delay_us();
+     58                  Delay_us();//Æô¶¯DS1302×ÜÏß	
+     59          	//Ð´ÈëÄ¿±êµØÖ·£ºaddr
+     60          	addr = addr & 0xFE;   //×îµÍÎ»ÖÃÁã£¬¼Ä´æÆ÷0Î»Îª0Ê±Ð´£¬Îª1Ê±¶Á
+   \                     ??CrossCallReturnLabel_2:
+   \   000010   EF           MOV     A,R7
+   \   000011   C2E0         CLR     0xE0 /* A   */.0
+   \   000013   FF           MOV     R7,A
+     61          	for (i = 0; i < 8; i ++) {
+   \   000014   7E08         MOV     R6,#0x8
+     62                    SCK=0;
+   \                     ??ds1302_write_byte_0:
+   \   000016   C280         CLR     0x80.0
+     63          		if (addr & 0x01) {
+   \   000018   EF           MOV     A,R7
+   \   000019   A2E0         MOV     C,0xE0 /* A   */.0
+   \   00001B   5004         JNC     ??ds1302_write_byte_1
+     64          			IO=1;
+   \   00001D   D281         SETB    0x80.1
+   \   00001F   8002         SJMP    ??ds1302_write_byte_2
+     65          			}
+     66          		else {
+     67          			IO=0;
+   \                     ??ds1302_write_byte_1:
+   \   000021   C281         CLR     0x80.1
+     68          			}
+     69          		SCK=1;      //²úÉúÊ±ÖÓ
+   \                     ??ds1302_write_byte_2:
+   \   000023   D280         SETB    0x80.0
+     70                          Delay_us();
+   \   000025                ; Setup parameters for call to function Delay_us
+   \   000025   12....       LCALL   ??Subroutine7_0 & 0xFFFF
+     71                           Delay_us();
+     72          		//SCK=0;
+     73          		addr = addr >> 1;
+   \                     ??CrossCallReturnLabel_13:
+   \   000028   EF           MOV     A,R7
+   \   000029   C3           CLR     C
+   \   00002A   13           RRC     A
+   \   00002B   FF           MOV     R7,A
+     74          		}	
+   \   00002C   1E           DEC     R6
+   \   00002D   EE           MOV     A,R6
+   \   00002E   70E6         JNZ     ??ds1302_write_byte_0
+     75          	//Ð´ÈëÊý¾Ý£ºd
+     76                  SCK=0;
+   \   000030   C280         CLR     0x80.0
+     77          	for (i = 0; i < 8; i ++) {
+   \   000032   7E08         MOV     R6,#0x8
+     78                    SCK=0;
+   \                     ??ds1302_write_byte_3:
+   \   000034   C280         CLR     0x80.0
+     79          		if (d & 0x01) {
+   \   000036   E5..         MOV     A,?V0 + 0
+   \   000038   A2E0         MOV     C,0xE0 /* A   */.0
+   \   00003A   5004         JNC     ??ds1302_write_byte_4
+     80          			IO=1;
+   \   00003C   D281         SETB    0x80.1
+   \   00003E   8002         SJMP    ??ds1302_write_byte_5
+     81          			}
+     82          		else {
+     83          			IO=0;
+   \                     ??ds1302_write_byte_4:
+   \   000040   C281         CLR     0x80.1
+     84          			}
+     85          		SCK=1;    //²úÉúÊ±ÖÓ  
+   \                     ??ds1302_write_byte_5:
+   \   000042   D280         SETB    0x80.0
+     86          		Delay_us();
+   \   000044                ; Setup parameters for call to function Delay_us
+   \   000044   12....       LCALL   ??Subroutine7_0 & 0xFFFF
+     87                           Delay_us();
+     88          		d = d >> 1;
+   \                     ??CrossCallReturnLabel_14:
+   \   000047   E5..         MOV     A,?V0 + 0
+   \   000049   C3           CLR     C
+   \   00004A   13           RRC     A
+   \   00004B   F5..         MOV     ?V0 + 0,A
+     89          		} 
+   \   00004D   1E           DEC     R6
+   \   00004E   EE           MOV     A,R6
+   \   00004F   70E3         JNZ     ??ds1302_write_byte_3
+     90          	RST=0;		//Í£Ö¹DS1302×ÜÏß
+   \   000051   12....       LCALL   ?Subroutine4 & 0xFFFF
+     91                  SCK=0;
+     92                   Delay_us();
+     93                  Delay_us();
+     94          }
+   \                     ??CrossCallReturnLabel_11:
+   \   000054                REQUIRE ?Subroutine1
+   \   000054                REQUIRE _A_P0
+   \   000054                ; // Fall through to label ?Subroutine1
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   7F01         MOV     R7,#0x1
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine4:
+   \   000000   C287         CLR     0x80.7
+   \   000002   C280         CLR     0x80.0
+   \   000004                ; Setup parameters for call to function Delay_us
+   \   000004                ; Setup parameters for call to function Delay_us
+   \   000004                REQUIRE ??Subroutine7_0
+   \   000004                ; // Fall through to label ??Subroutine7_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine7_0:
+   \   000000   12....       LCALL   ?Subroutine6 & 0xFFFF
+   \                     ??CrossCallReturnLabel_18:
+   \   000003   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine3:
+   \   000000   12....       LCALL   ??Delay_us?relay
+   \   000003   D287         SETB    0x80.7
+   \   000005                ; Setup parameters for call to function Delay_us
+   \   000005                ; Setup parameters for call to function Delay_us
+   \   000005   12....       LCALL   ?Subroutine6 & 0xFFFF
+   \                     ??CrossCallReturnLabel_19:
+   \   000008   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine6:
+   \   000000   12....       LCALL   ??Delay_us?relay
+   \   000003                ; Setup parameters for call to function Delay_us
+   \   000003                ; Setup parameters for call to function Delay_us
+   \   000003                ; Setup parameters for call to function Delay_us
+   \   000003                ; Setup parameters for call to function Delay_us
+   \   000003                ; Setup parameters for call to function Delay_us
+   \   000003                ; Setup parameters for call to function Delay_us
+   \   000003                ; Setup parameters for call to function Delay_us
+   \   000003                ; Setup parameters for call to function Delay_us
+   \   000003                ; Setup parameters for call to function Delay_us
+   \   000003                ; Setup parameters for call to function Delay_us
+   \   000003                ; Setup parameters for call to function Delay_us
+   \   000003                ; Setup parameters for call to function Delay_us
+   \   000003                ; Setup parameters for call to function Delay_us
+   \   000003   12....       LCALL   ??Delay_us?relay
+   \   000006   22           RET
+     95          //´ÓDS1302¶Á³öÒ»×Ö½ÚÊý¾Ý
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     96          unsigned char ds1302_read_byte(unsigned char addr) {
+   \                     ds1302_read_byte:
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0 + 0,R1
+     97          
+     98          	unsigned char i,temp;	
+     99                  RST=0;	
+   \   000007   12....       LCALL   ?Subroutine4 & 0xFFFF
+    100                  SCK=0;
+    101                  Delay_us();
+    102                  Delay_us();
+    103                  Delay_us();
+   \                     ??CrossCallReturnLabel_12:
+   \   00000A                ; Setup parameters for call to function Delay_us
+   \   00000A   12....       LCALL   ?Subroutine3 & 0xFFFF
+    104          	RST=1;	
+    105                  Delay_us();
+    106                  Delay_us();
+    107                  Delay_us();//Æô¶¯DS1302×ÜÏß
+   \                     ??CrossCallReturnLabel_3:
+   \   00000D                ; Setup parameters for call to function Delay_us
+   \   00000D   12....       LCALL   ??Delay_us?relay
+    108          	//Ð´ÈëÄ¿±êµØÖ·£ºaddr
+    109          	addr = addr | 0x01;    //×îµÍÎ»ÖÃ¸ß£¬¼Ä´æÆ÷0Î»Îª0Ê±Ð´£¬Îª1Ê±¶Á
+   \   000010   E5..         MOV     A,?V0 + 0
+   \   000012   D2E0         SETB    0xE0 /* A   */.0
+   \   000014   F5..         MOV     ?V0 + 0,A
+    110          	for (i = 0; i < 8; i ++) {
+   \   000016   7808         MOV     R0,#0x8
+    111                     SCK=0;
+   \                     ??ds1302_read_byte_0:
+   \   000018   C280         CLR     0x80.0
+    112          		if (addr & 0x01) {
+   \   00001A   E5..         MOV     A,?V0 + 0
+   \   00001C   A2E0         MOV     C,0xE0 /* A   */.0
+   \   00001E   5004         JNC     ??ds1302_read_byte_1
+    113          			IO=1;
+   \   000020   D281         SETB    0x80.1
+   \   000022   8002         SJMP    ??ds1302_read_byte_2
+    114          			}
+    115          		else {
+    116          			IO=0;
+   \                     ??ds1302_read_byte_1:
+   \   000024   C281         CLR     0x80.1
+    117          			}
+    118          		SCK=1;
+   \                     ??ds1302_read_byte_2:
+   \   000026   D280         SETB    0x80.0
+    119          		//SCK=0;
+    120          		addr = addr >> 1;
+   \   000028   C3           CLR     C
+   \   000029   13           RRC     A
+   \   00002A   F5..         MOV     ?V0 + 0,A
+    121          		}	
+   \   00002C   18           DEC     R0
+   \   00002D   E8           MOV     A,R0
+   \   00002E   70E8         JNZ     ??ds1302_read_byte_0
+    122                 
+    123          	//Êä³öÊý¾Ý£ºtemp
+    124                  P0DIR &=0xfd; //P0_1ÎªÊäÈë
+   \   000030   53FDFD       ANL     0xfd,#0xfd
+    125                    Delay_us();
+   \   000033                ; Setup parameters for call to function Delay_us
+   \   000033   12....       LCALL   ??Subroutine7_0 & 0xFFFF
+    126                  Delay_us();
+    127          	for (i = 0; i < 8; i ++) {
+   \                     ??CrossCallReturnLabel_15:
+   \   000036   7F08         MOV     R7,#0x8
+    128                          Delay_us();
+   \                     ??ds1302_read_byte_3:
+   \   000038                ; Setup parameters for call to function Delay_us
+   \   000038   12....       LCALL   ??Subroutine7_0 & 0xFFFF
+    129                          Delay_us();
+    130                          
+    131          		temp = temp >> 1;
+   \                     ??CrossCallReturnLabel_16:
+   \   00003B   EE           MOV     A,R6
+   \   00003C   C3           CLR     C
+   \   00003D   13           RRC     A
+   \   00003E   FE           MOV     R6,A
+    132                          SCK=1;
+   \   00003F   D280         SETB    0x80.0
+    133                          Delay_us();
+   \   000041                ; Setup parameters for call to function Delay_us
+   \   000041   12....       LCALL   ?Subroutine2 & 0xFFFF
+    134                          Delay_us();
+    135                          Delay_us();
+    136                          Delay_us();
+    137                          SCK=0;
+   \                     ??CrossCallReturnLabel_0:
+   \   000044   C280         CLR     0x80.0
+    138                          Delay_10us();
+   \   000046                ; Setup parameters for call to function Delay_10us
+   \   000046   12....       LCALL   ??Delay_10us?relay
+    139                           Delay_us();
+   \   000049                ; Setup parameters for call to function Delay_us
+   \   000049   12....       LCALL   ?Subroutine2 & 0xFFFF
+    140                          Delay_us();
+    141                          Delay_us();
+    142                          Delay_us();
+    143          		if (IO) {
+   \                     ??CrossCallReturnLabel_1:
+   \   00004C   A281         MOV     C,0x80.1
+   \   00004E   5004         JNC     ??ds1302_read_byte_4
+    144          			temp |= 0x80;
+   \   000050   EE           MOV     A,R6
+   \   000051   D2E7         SETB    0xE0 /* A   */.7
+   \   000053   FE           MOV     R6,A
+    145          		
+    146                          }
+    147                          
+    148          		else {
+    149          			temp &= 0x7F;
+    150          			}
+    151                          
+    152                         
+    153          		}
+   \                     ??ds1302_read_byte_4:
+   \   000054   1F           DEC     R7
+   \   000055   EF           MOV     A,R7
+   \   000056   70E0         JNZ     ??ds1302_read_byte_3
+    154                   Delay_us();
+   \   000058                ; Setup parameters for call to function Delay_us
+   \   000058   12....       LCALL   ??Subroutine7_0 & 0xFFFF
+    155                   Delay_us();
+    156          	RST=0;
+   \                     ??CrossCallReturnLabel_17:
+   \   00005B   C287         CLR     0x80.7
+    157                  P0DIR |=0x02;  //P0_1ÎªÊä³ö
+   \   00005D   43FD02       ORL     0xfd,#0x2
+    158                  IO=0;//Í£Ö¹DS1302×ÜÏß
+   \   000060   C281         CLR     0x80.1
+    159          	return temp;
+   \   000062   EE           MOV     A,R6
+   \   000063   F9           MOV     R1,A
+   \   000064   80..         SJMP    ?Subroutine1
+   \   000066                REQUIRE _A_P0
+   \   000066                REQUIRE P0DIR
+    160          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine2:
+   \   000000   12....       LCALL   ?Subroutine6 & 0xFFFF
+   \                     ??CrossCallReturnLabel_20:
+   \   000003                ; Setup parameters for call to function Delay_us
+   \   000003                ; Setup parameters for call to function Delay_us
+   \   000003   12....       LCALL   ?Subroutine6 & 0xFFFF
+   \                     ??CrossCallReturnLabel_21:
+   \   000006   22           RET
+    161          /*
+    162          //ÏòDS302Ð´ÈëÊ±ÖÓÊý¾Ý
+    163          void ds1302_write_time(void) 
+    164          {
+    165          	ds1302_write_byte(ds1302_control_add,0x00);			//¹Ø±ÕÐ´±£»¤ 
+    166          	ds1302_write_byte(ds1302_sec_add,0x80);				//ÔÝÍ£Ê±ÖÓ 
+    167          	//ds1302_write_byte(ds1302_charger_add,0xa9);	    //ä¸Á÷³äµç 
+    168          	ds1302_write_byte(ds1302_year_add,time_buf[1]);		//Äê 
+    169          	ds1302_write_byte(ds1302_month_add,time_buf[2]);	//ÔÂ 
+    170          	ds1302_write_byte(ds1302_date_add,time_buf[3]);		//ÈÕ 
+    171          	ds1302_write_byte(ds1302_hr_add,time_buf[4]);		//Ê± 
+    172          	ds1302_write_byte(ds1302_min_add,time_buf[5]);		//·Ö
+    173          	ds1302_write_byte(ds1302_sec_add,time_buf[6]);		//Ãë
+    174          	ds1302_write_byte(ds1302_day_add,time_buf[7]);		//ÖÜ 
+    175          	ds1302_write_byte(ds1302_control_add,0x80);			//´ò¿ªÐ´±£»¤     
+    176          }
+    177          */
+    178          //´ÓDS302¶Á³öÊ±ÖÓÊý¾Ý
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    179          void ds1302_read_time(void)  
+   \                     ds1302_read_time:
+    180          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    181            time_buf[0]=ds1302_read_byte(0x81);//¶ÁÃë
+   \   000004                ; Setup parameters for call to function ds1302_read_byte
+   \   000004   7981         MOV     R1,#-0x7f
+   \   000006   12....       LCALL   ?Subroutine5 & 0xFFFF
+   \                     ??CrossCallReturnLabel_4:
+   \   000009   90....       MOV     DPTR,#time_buf
+   \   00000C   F0           MOVX    @DPTR,A
+    182          time_buf[1]=ds1302_read_byte(0x83);//¶Á·Ö
+   \   00000D                ; Setup parameters for call to function ds1302_read_byte
+   \   00000D   7983         MOV     R1,#-0x7d
+   \   00000F   12....       LCALL   ?Subroutine5 & 0xFFFF
+   \                     ??CrossCallReturnLabel_5:
+   \   000012   90....       MOV     DPTR,#time_buf + 1
+   \   000015   F0           MOVX    @DPTR,A
+    183          time_buf[2]=ds1302_read_byte(0x85);//¶ÁÊ±
+   \   000016                ; Setup parameters for call to function ds1302_read_byte
+   \   000016   7985         MOV     R1,#-0x7b
+   \   000018   12....       LCALL   ?Subroutine5 & 0xFFFF
+   \                     ??CrossCallReturnLabel_6:
+   \   00001B   90....       MOV     DPTR,#time_buf + 2
+   \   00001E   F0           MOVX    @DPTR,A
+    184          time_buf[3]=ds1302_read_byte(0x87);//¶ÁÈÕ
+   \   00001F                ; Setup parameters for call to function ds1302_read_byte
+   \   00001F   7987         MOV     R1,#-0x79
+   \   000021   12....       LCALL   ?Subroutine5 & 0xFFFF
+   \                     ??CrossCallReturnLabel_7:
+   \   000024   90....       MOV     DPTR,#time_buf + 3
+   \   000027   F0           MOVX    @DPTR,A
+    185          time_buf[4]=ds1302_read_byte(0x89);//¶ÁÔÂ
+   \   000028                ; Setup parameters for call to function ds1302_read_byte
+   \   000028   7989         MOV     R1,#-0x77
+   \   00002A   12....       LCALL   ?Subroutine5 & 0xFFFF
+   \                     ??CrossCallReturnLabel_8:
+   \   00002D   90....       MOV     DPTR,#time_buf + 4
+   \   000030   F0           MOVX    @DPTR,A
+    186          time_buf[5]=ds1302_read_byte(0x8B);//¶ÁÐÇÆÚ
+   \   000031                ; Setup parameters for call to function ds1302_read_byte
+   \   000031   798B         MOV     R1,#-0x75
+   \   000033   12....       LCALL   ?Subroutine5 & 0xFFFF
+   \                     ??CrossCallReturnLabel_9:
+   \   000036   90....       MOV     DPTR,#time_buf + 5
+   \   000039   F0           MOVX    @DPTR,A
+    187          time_buf[6]=ds1302_read_byte(0x8D);//¶ÁÄê
+   \   00003A                ; Setup parameters for call to function ds1302_read_byte
+   \   00003A   798D         MOV     R1,#-0x73
+   \   00003C   12....       LCALL   ?Subroutine5 & 0xFFFF
+   \                     ??CrossCallReturnLabel_10:
+   \   00003F   90....       MOV     DPTR,#time_buf + 6
+   \   000042   F0           MOVX    @DPTR,A
+    188            /*
+    189          	time_buf[1]=ds1302_read_byte(ds1302_year_add);		//Äê 
+    190          	time_buf[2]=ds1302_read_byte(ds1302_month_add);		//ÔÂ 
+    191          	time_buf[3]=ds1302_read_byte(ds1302_date_add);		//ÈÕ 
+    192          	time_buf[4]=ds1302_read_byte(ds1302_hr_add);		//Ê± 
+    193          	time_buf[5]=ds1302_read_byte(ds1302_min_add);		//·Ö 
+    194          	time_buf[6]=(ds1302_read_byte(ds1302_sec_add))&0x7f;//Ãë£¬ÆÁ±ÎÃëµÄµÚ7Î»£¬±ÜÃâ³¬³ö59
+    195          	time_buf[7]=ds1302_read_byte(ds1302_day_add);		//ÖÜ 	
+    196                  
+    197                  dis_time_buf[0]=(time_buf[0]>>4)+'0'; //Äê   
+    198                   dis_time_buf[1]=(time_buf[0]&0x0f)+'0';
+    199                   
+    200                   dis_time_buf[2]=(time_buf[1]>>4)+'0';   
+    201                   dis_time_buf[3]=(time_buf[1]&0x0f)+'0';
+    202                  
+    203                  
+    204                   
+    205                   
+    206                   dis_time_buf[4]=(time_buf[2]>>4)+'0'; //ÔÂ  
+    207                   dis_time_buf[5]=(time_buf[2]&0x0f)+'0';
+    208                   
+    209                  
+    210                   dis_time_buf[6]=(time_buf[3]>>4)+'0'; //ÈÕ   
+    211                   dis_time_buf[7]=(time_buf[3]&0x0f)+'0';
+    212                   
+    213                  // dis_time_buf[14]=(time_buf[7]&0x07)+'0'; //ÐÇÆÚ
+    214                   
+    215                   /*
+                          ^
+Warning[Pe009]: nested comment is not allowed
+    216                   //µÚ2ÐÐÏÔÊ¾  
+    217                   dis_time_buf[0]=(time_buf[4]>>4)+'0'; //Ê±   
+    218                   dis_time_buf[1]=(time_buf[4]&0x0f)+'0';   
+    219                  
+    220                   dis_time_buf[2]=':';
+    221                  
+    222                   dis_time_buf[3]=(time_buf[5]>>4)+'0'; //·Ö   
+    223                   dis_time_buf[4]=(time_buf[5]&0x0f)+'0';   
+    224                   dis_time_buf[5]=' ';
+    225                   dis_time_buf[6]=(time_buf[6]>>4)+'0'; //Ãë   
+    226                   dis_time_buf[7]=(time_buf[6]&0x0f)+'0';
+    227                   */
+    228          }
+   \   000043   02....       LJMP    ?Subroutine0 & 0xFFFF
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine5:
+   \   000000   12....       LCALL   ??ds1302_read_byte?relay
+   \   000003   E9           MOV     A,R1
+   \   000004   22           RET
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for time_buf>`:
+   \   000000   20           DB 32
+   \   000001   23           DB 35
+   \   000002   05           DB 5
+   \   000003   25           DB 37
+   \   000004   16           DB 22
+   \   000005   32           DB 50
+   \   000006   01           DB 1
+   \   000007   04           DB 4
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??ds1302_init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    ds1302_init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??ds1302_write_byte?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    ds1302_write_byte
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??ds1302_read_byte?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    ds1302_read_byte
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??ds1302_read_time?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    ds1302_read_time
+
+   Maximum stack usage in bytes:
+
+     Function               ISTACK PSTACK XSTACK
+     --------               ------ ------ ------
+     ds1302_init                2      0      0
+       -> ds1302_write_byte     4      0      0
+       -> ds1302_write_byte     4      0      0
+       -> ds1302_write_byte     4      0      0
+       -> ds1302_write_byte     4      0      0
+       -> ds1302_write_byte     4      0      0
+       -> ds1302_write_byte     4      0      0
+       -> ds1302_write_byte     4      0      0
+       -> ds1302_write_byte     4      0      0
+       -> ds1302_write_byte     4      0      0
+     ds1302_read_byte           0      0      9
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_10us            0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+     ds1302_read_time           2      0      0
+       -> ds1302_read_byte      4      0      0
+       -> ds1302_read_byte      4      0      0
+       -> ds1302_read_byte      4      0      0
+       -> ds1302_read_byte      4      0      0
+       -> ds1302_read_byte      4      0      0
+       -> ds1302_read_byte      4      0      0
+       -> ds1302_read_byte      4      0      0
+     ds1302_write_byte          0      0      9
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+       -> Delay_us              0      0     18
+
+
+   Segment part sizes:
+
+     Function/Label              Bytes
+     --------------              -----
+     _A_P0                          1
+     P0DIR                          1
+     time_buf                       8
+     dis_time_buf                  16
+     ds1302_init                   67
+     ?Subroutine0                   7
+     ds1302_write_byte             84
+     ?Subroutine1                   5
+     ?Subroutine4                   4
+     ??Subroutine7_0                4
+     ?Subroutine3                   9
+     ?Subroutine6                   7
+     ds1302_read_byte             102
+     ?Subroutine2                   7
+     ds1302_read_time              70
+     ?Subroutine5                   5
+     ?<Initializer for time_buf>    8
+     ??ds1302_init?relay            6
+     ??ds1302_write_byte?relay      6
+     ??ds1302_read_byte?relay       6
+     ??ds1302_read_time?relay       6
+
+ 
+ 371 bytes in segment BANKED_CODE
+  24 bytes in segment BANK_RELAYS
+   2 bytes in segment SFR_AN
+   8 bytes in segment XDATA_I
+   8 bytes in segment XDATA_ID
+  16 bytes in segment XDATA_Z
+ 
+ 403 bytes of CODE  memory
+   0 bytes of DATA  memory (+ 2 bytes shared)
+  24 bytes of XDATA memory
+
+Errors: none
+Warnings: 1

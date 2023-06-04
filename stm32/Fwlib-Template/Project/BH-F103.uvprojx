@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F10X_HD</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\CMSIS;..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\User;..\User\USART;..\User\delay;..\User\motor;..\User\Data_handle;..\User\timer</IncludePath>
+              <IncludePath>..\Libraries\CMSIS;..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\User;..\User\USART;..\User\delay;..\User\motor;..\User\Data_handle;..\User\timer;..\User\RTC</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -587,6 +587,11 @@
               <FileName>time.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\timer\time.c</FilePath>
+            </File>
+            <File>
+              <FileName>ds1302.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\RTC\ds1302.c</FilePath>
             </File>
           </Files>
         </Group>

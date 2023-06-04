@@ -1,5 +1,5 @@
 [DebugChecksum]
-Checksum=-475856795
+Checksum=-1426965787
 [DisAssemblyWindow]
 NumStates=_ 1
 State 1=_ 1
@@ -29,6 +29,8 @@ LimitSize=0
 ByteLimit=50
 [CallStack]
 ShowArgs=0
+[BreakpointUsageDialog]
+Placement=_ 546 271 991 554
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""

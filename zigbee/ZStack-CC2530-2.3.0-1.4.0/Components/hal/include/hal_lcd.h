@@ -22,7 +22,7 @@
   its documentation for any purpose.
 
   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
-  PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+  PROVIDED “AS IS?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
   INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
   NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
   TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
@@ -125,6 +125,9 @@ extern void HalLcdWriteStringValueValue( char *title, uint16 value1, uint8 forma
  * Write a percentage bar to the LCD
  */
 extern void HalLcdDisplayPercentBar( char *title, uint8 value );
+//extern void LCD_CLS(void);
+//extern void LCD_P16x16Ch(unsigned char x, unsigned char y, unsigned char N);
+//extern void LCD_welcome(void);
 
 
 /**************************************************************************************************

@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         14/May/2023  16:33:05 #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         26/May/2023  12:04:35 #
 # Copyright 2004-2011 IAR Systems AB.                                         #
 #                                                                             #
 #    Core               =  plain                                              #
@@ -122,7 +122,7 @@
 #                          \ -I C:\Users\86158\Desktop\8.气体传感器\ZStack-CC #
 #                          2530-2.3.0-1.4.0\Projects\zstack\Samples\SampleApp #
 #                          \CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LEVEL\ #
-#                          srf04\SINGLE_CHIP\ -Ohz --require_prototypes       #
+#                          srf04\SINGLE_CHIP\ -Ohz                            #
 #    List file          =  C:\Users\86158\Desktop\8.气体传感器\ZStack-CC2530- #
 #                          2.3.0-1.4.0\Projects\zstack\Samples\SampleApp\CC25 #
 #                          30DB\CoordinatorEB-Pro\List\MT_UART.lst            #

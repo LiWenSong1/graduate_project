@@ -22,36 +22,48 @@ Dialog DLL:      TARMSTM.DLL  V1.64.0.0
  
 <h2>Project:</h2>
 D:\xuexi\graduate_project\stm32_control2\Fwlib-Template\Project\BH-F103.uvprojx
-Project File Date:  04/30/2023
+Project File Date:  05/26/2023
 
 <h2>Output:</h2>
 Build target 'Target 1'
 compiling main.c...
+..\User\USART\USART1.h(11): warning:  #1-D: last line of file ends without a newline
+  void food_add(int food_value,int food_thresholdmin,int food_thresholdmax);
 ..\User\delay\delay.h(10): warning:  #1-D: last line of file ends without a newline
   void delay_ms(u16 nms);
 ..\User\Data_handle\Data_handle.h(7): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\User\timer\time.h(7): warning:  #1-D: last line of file ends without a newline
   #endif
-..\User\main.c(65): warning:  #177-D: variable "max_temp" was declared but never referenced
-        uint8_t max_temp=24;
-..\User\main.c(66): warning:  #177-D: variable "min_temp" was declared but never referenced
-        uint8_t min_temp=24;
-..\User\main.c(67): warning:  #177-D: variable "max_humid" was declared but never referenced
-        uint8_t max_humid=70;
-..\User\main.c(68): warning:  #177-D: variable "min_humid" was declared but never referenced
-        uint8_t min_humid=65;
-..\User\main.c: 7 warnings, 0 errors
+..\User\RTC\ds1302.h(24): warning:  #1295-D: Deprecated declaration ds1302_gpio_init - give arg types
+  void ds1302_gpio_init();//ds1302端口初始化
+..\User\RTC\ds1302.h(28): warning:  #1295-D: Deprecated declaration ds1032_init - give arg types
+  void ds1032_init();//ds1302初始化函数
+..\User\RTC\ds1302.h(29): warning:  #1295-D: Deprecated declaration ds1032_DATAOUT_init - give arg types
+  void ds1032_DATAOUT_init();//IO端口配置为输出
+..\User\RTC\ds1302.h(30): warning:  #1295-D: Deprecated declaration ds1032_DATAINPUT_init - give arg types
+  void ds1032_DATAINPUT_init();//IO端口配置为输入
+..\User\RTC\ds1302.h(31): warning:  #1295-D: Deprecated declaration ds1032_read_time - give arg types
+  void ds1032_read_time();//从ds1302读取实时时间（BCD码）
+..\User\RTC\ds1302.h(32): warning:  #1295-D: Deprecated declaration ds1032_read_realTime - give arg types
+  void ds1032_read_realTime();//将BCD码转化为十进制数据
+..\User\RTC\ds1302.h(34): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\User\main.c(89): warning:  #177-D: variable "time" was declared but never referenced
+        uint8_t time=0;
+..\User\main.c: 12 warnings, 0 errors
 compiling USART1.c...
+..\User\USART\USART1.h(11): warning:  #1-D: last line of file ends without a newline
+  void food_add(int food_value,int food_thresholdmin,int food_thresholdmax);
 ..\User\delay\delay.h(10): warning:  #1-D: last line of file ends without a newline
   void delay_ms(u16 nms);
-..\User\USART\USART1.c(203): warning:  #1-D: last line of file ends without a newline
+..\User\USART\USART1.c(274): warning:  #1-D: last line of file ends without a newline
   }
-..\User\USART\USART1.c: 2 warnings, 0 errors
+..\User\USART\USART1.c: 3 warnings, 0 errors
 linking...
-Program Size: Code=4136 RO-data=336 RW-data=88 ZI-data=1536  
+Program Size: Code=6968 RO-data=336 RW-data=136 ZI-data=1536  
 FromELF: creating hex file...
-".\Objects\BH-F103.axf" - 0 Error(s), 9 Warning(s).
+".\Objects\BH-F103.axf" - 0 Error(s), 15 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   D:\xuexi\graduate_project\stm32_control2\Fwlib-Template\Project\RTE

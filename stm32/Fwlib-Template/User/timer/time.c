@@ -34,7 +34,7 @@ void tim8_0ut_init(u32 arr,u32 psc)
 //	TIM_OCInitStruct.TIM_OCNIdleState=TIM_OCIdleState_Reset;
 //	TIM_OCInitStruct.TIM_OutputNState=TIM_OutputNState_Enable;
 	TIM_OCInitStruct.TIM_OutputState=TIM_OutputState_Enable;
-	TIM_OCInitStruct.TIM_Pulse=1950;
+	TIM_OCInitStruct.TIM_Pulse=1900;
 	TIM_OC1Init(TIM8, &TIM_OCInitStruct);
 	TIM_ARRPreloadConfig(TIM8, ENABLE);
 	TIM_OC1PreloadConfig(TIM8, TIM_OCPreload_Enable);
@@ -78,7 +78,7 @@ void tim2_init(void)
    TIM_ITConfig(TIM2,TIM_IT_Update,ENABLE);
 		
 		// 使能计数器
-    TIM_Cmd(TIM2, ENABLE);
+		TIM_Cmd(TIM2, ENABLE);
 	}	
 int update=0;
 int num=0;
@@ -88,7 +88,7 @@ void TIM2_IRQHandler(void)
 	if(TIM_GetITStatus(TIM2, TIM_IT_Update)==SET)
 	{
 		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
-		if(num<30)
+		if(num<60)
 		{
 		num++;
 		}
